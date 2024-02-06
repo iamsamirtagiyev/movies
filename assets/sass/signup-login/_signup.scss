@@ -1,0 +1,156 @@
+body{
+  @include flex(center, center);
+  min-height: 100vh;
+}
+
+.video{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  &::after{
+    content: '';
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .9);
+  }
+  video{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 115%;
+    height: 135%;
+  }
+}
+
+.form-wrapper{
+  width: 100%;
+  min-height: 100vh;
+  @include flex(center, center)
+}
+form {
+  margin: 0 auto;
+  z-index: 1;
+  margin: 20px;
+  background: $black;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  color: $white;
+  padding: 20px;
+  @include flex;
+  flex-direction: column;
+  gap: 10px;
+
+  h1{
+    text-align: center;
+    margin: 0 auto;
+    font-size: 40px
+  }
+  .fullname{
+    @include flex(center);
+    gap: 10px;
+    .input-box{
+      label{
+        left: 20px;
+      }
+    }
+  }
+
+  .input-box{
+    @include flex(center);
+    width: 100%;
+    position: relative;
+    background: #252525;
+    border-radius: 5px;
+    padding: 10px;
+    svg{
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+    label{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 46px;
+      transition: all .5s ease;
+      font-size: 18px;
+      pointer-events: none;
+    }
+    input{
+      width: 100%;
+      font-size: 18px;
+      background: transparent;
+      padding: 0 8px;
+      padding-top: 5px;
+      color: $white;
+      font-weight: 500;
+      &:focus ~ label, &:valid ~ label{
+        color: rgb(255, 0, 0);
+        font-size: 14px;
+        top: 10px;
+      }
+    }
+  }
+  button{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    color: $white;
+    font-weight: 500;
+    border-radius: 5px;
+    background: darkred;
+    transition: all .5s ease;
+    border: solid 3px #000;
+    outline: solid 2px #000;
+    &:hover{
+      outline: solid 2px darkred; 
+    }
+  }
+  p{
+    margin: 0 auto;
+    text-align: center;
+    a{
+      color:darkred;
+    }
+  }
+}
+
+@media(max-width: 575px){
+  form{
+    .input-box{
+      padding: 5px 10px;
+      svg{
+        width: 20px;
+        height: 20px;
+      }
+      label{
+        font-size: 15px;
+        left: 35px;
+      }
+      input{
+        font-size: 15px;
+        &:focus ~ label, &:valid ~ label{
+          color: rgb(255, 0, 0);
+          font-size: 12px;
+          top: 10px;
+        }
+      }
+      button{
+        font-size: 15px;
+        border: none;
+        outline: none;
+        &:hover{
+          background: rgb(112, 3, 3);
+          border: none;
+        outline: none;
+        }
+      }
+      p{
+        font-size: 15px;
+      }
+    }
+  }
+}

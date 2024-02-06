@@ -1,0 +1,851 @@
+@import "./reset/reset";
+@import "./variables/variable";
+@import "./mixins/mixin";
+@import "./films/films";
+@import "./signup-login/signup";
+@import "./details/detail";
+
+body {
+  overflow-x: hidden;
+  background: $primary-color;
+  @include flex;
+  flex-direction: column;
+}
+
+//? ---------------> Navbar Start <---------------
+nav {
+  z-index: 999;
+  width: 100%;
+  position: sticky;
+  left: 0;
+  top: 0;
+  height: 66px;
+  padding: 10px 30px;
+  background: $primary-color;
+  @include flex(center, space-between);
+  box-shadow: 0 0 0 transparent;
+  .logo {
+    @include flex(center);
+    gap: 5px;
+    transition: all 0.5s ease;
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+    }
+    span {
+      color: $white;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+  }
+
+  .actions {
+    @include flex(center);
+    gap: 10px;
+    .search-icon {
+      background: $icon-bg;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      transition: all 0.5s ease;
+      display: none;
+      font-size: 20px;
+      cursor: pointer;
+      svg {
+        width: 22px;
+        height: 22px;
+        color: $white;
+        opacity: 0.5;
+        transition: all 0.5s ease;
+      }
+      &:hover svg {
+        opacity: 1;
+      }
+    }
+    .search-box {
+      width: 300px;
+      position: relative;
+      @include flex(center);
+      height: auto;
+      gap: 10px;
+      .close-icon {
+        border-radius: 4px;
+        width: 35px;
+        height: 35px;
+        background: $icon-bg;
+        display: none;
+        cursor: pointer;
+        &:hover svg {
+          color: $white;
+        }
+        svg {
+          color: #919191;
+          width: 25px;
+          height: 25px;
+          transition: all 0.5s ease;
+        }
+      }
+      .search {
+        width: 100%;
+        position: relative;
+        height: auto;
+        svg {
+          color: $white;
+          opacity: 0.4;
+          width: 20px;
+          height: 20px;
+          transition: all 0.5s ease;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          left: 10px;
+        }
+        input {
+          width: 100%;
+          font-size: 15px;
+          padding: 10px 0;
+          margin: 0;
+          padding-left: 40px;
+          border-radius: 6px;
+          background: #444444;
+          transition: all 0.5s ease;
+          text-transform: capitalize;
+          color: $white;
+          border-bottom: none;
+          height: auto;
+          &::placeholder {
+            color: #7c7c78;
+          }
+          &:hover {
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
+          }
+          &:focus {
+            box-shadow: 0 0 0 2px $white;
+            border-bottom: 0px solid transparent;
+            -webkit-box-shadow: 0 0 0 0 transparent;
+          }
+        }
+        &::after {
+          display: none;
+          content: "";
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: 10px;
+          width: 15px;
+          height: 15px;
+          border: solid 3px rgba(255, 255, 255, 0.4);
+          border-left-color: transparent;
+          border-radius: 999px;
+          animation: loading 1s infinite linear;
+        }
+
+        &.active::after {
+          display: block;
+        }
+
+        &:focus-within svg {
+          opacity: 0;
+        }
+        &:focus-within input {
+          padding: 10px 15px;
+        }
+      }
+    }
+
+    .menu-icon {
+      display: none;
+      position: relative;
+      width: 35px;
+      height: 35px;
+      border-radius: 5px;
+      background: $icon-bg;
+      padding: 0 5px;
+      &:hover span {
+        background: $white;
+      }
+      &.active span {
+        &:first-child {
+          width: 75%;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(-315deg);
+          background: $white;
+        }
+        &:nth-child(2) {
+          transform: translate(-50%, -50%) rotate(315deg);
+          background: $white;
+        }
+        &:last-child {
+          width: 75%;
+          top: 50%;
+          right: 50%;
+          transform: translate(50%, -50%) rotate(-315deg);
+          background: $white;
+        }
+      }
+      span {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.4);
+        height: 3px;
+        border-radius: 50px;
+        transition: all 0.5s ease;
+        &:first-child {
+          width: 36%;
+          left: 5px;
+          top: 6px;
+        }
+        &:nth-child(2) {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 75%;
+        }
+        &:last-child {
+          width: 36%;
+          bottom: 6px;
+          right: 5px;
+        }
+      }
+    }
+  }
+}
+//? ---------------> Navbar End <---------------
+
+//? ---------------> Sidebar Start <---------------
+
+.overlay {
+  z-index: 9;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba($color: #000000, $alpha: 0.8);
+  transition: all 0.5s ease;
+  opacity: 0;
+  pointer-events: none;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+  }
+}
+
+aside {
+  z-index: 999;
+  background: $primary-color;
+  width: 250px;
+  height: calc(100vh - 66px);
+  overflow-y: auto;
+  transition: all 0.5s ease;
+  position: fixed;
+  top: 66px;
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .menu {
+    padding: 10px;
+    li {
+      border-radius: 5px;
+      padding: 10px 20px;
+      transition: all 0.5s ease;
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+      &.active {
+        background: rgba(255, 255, 255, 0.2);
+        span {
+          font-weight: 500;
+        }
+      }
+      &.theme {
+        user-select: none;
+        @include flex;
+        gap: 5px;
+        padding: 0;
+        flex-direction: column;
+        &:hover {
+          background: transparent;
+        }
+        &:hover .active-theme {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        cursor: pointer;
+        .active-theme {
+          @include flex(center, space-between);
+          color: $white;
+          width: 100%;
+          transition: all 0.5s ease;
+          border-radius: 5px;
+          padding: 10px 20px;
+          span {
+            @include flex(center);
+            gap: 10px;
+            font-size: 16px;
+          }
+        }
+        .theme-options {
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 5px;
+          @include flex;
+          flex-direction: column;
+          width: 100%;
+          color: $white;
+          overflow: hidden;
+          height: 0;
+          transition: all .5s ease;
+          &.active{
+            height: 170px;
+          }
+          span {
+            @include flex(center);
+            gap: 10px;
+            width: 100%;
+            padding: 10px 20px;
+            transition: all 0.5s ease;
+            font-size: 16px;
+            &:hover {
+              background: rgba(255, 255, 255, 0.2);
+            }
+          }
+        }
+      }
+      a, button {
+        @include flex(center);
+        background: transparent;
+        gap: 8px;
+        &.basket {
+          .icon {
+            @include flex(center);
+            gap: 8px;
+          }
+          justify-content: space-between;
+          .count {
+            @include flex(center, center);
+            font-size: 15px;
+            background: red;
+            width: 25px;
+            height: 25px;
+            border-radius: 999px;
+            color: $white;
+            font-weight: 500;
+            display: none;
+          }
+        }
+        span {
+          font-size: 17px;
+          color: $white;
+        }
+        svg {
+          path {
+            fill: $white;
+          }
+        }
+      }
+    }
+  }
+
+  footer {
+    border-top: solid 1px rgba(255, 255, 255, 0.1);
+    @include flex(flex-start, center);
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    span {
+      color: $white;
+      svg {
+        path {
+          fill: red;
+        }
+      }
+    }
+    button {
+      width: 100%;
+      padding: 10px 20px;
+      background: darkred;
+      color: $white;
+      @include flex(center, center);
+      gap: 10px;
+      text-align: center;
+      border-radius: 5px;
+      transition: all 0.5s ease;
+      i {
+        font-size: 15px;
+      }
+      &:hover {
+        background: rgb(112, 0, 0);
+      }
+    }
+  }
+}
+//? ---------------> Sidebar End <---------------
+
+//? ---------------> Banner Start <---------------
+.banner {
+  background: $primary-color;
+  @include flex(flex-start, flex-end);
+  padding: 0 20px 20px 20px;
+  .banner-wrapper {
+    padding: 20px;
+    width: calc(100% - 250px);
+    min-height: calc(100vh - 80px);
+    border-radius: 10px;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.3)
+      ),
+      url(../images/bg.webp) no-repeat center/cover;
+    @include flex(center, center);
+    gap: 10px;
+  }
+  .description {
+    width: 50%;
+    color: $white;
+    h1 {
+      font-size: 65px;
+      width: 100%;
+      font-weight: 600;
+    }
+    span {
+      @include flex(center);
+      margin: 5px 0;
+      gap: 10px;
+      color: gray;
+      font-size: 20px;
+      p {
+        margin: 0;
+        background: rgba(255, 255, 255, 0.2);
+        color: $white;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+    }
+    p {
+      color: gray;
+      font-size: 18px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 20px;
+    }
+    a {
+      background: darkred;
+      color: $white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.5s ease;
+      @include flex(center, center);
+      max-width: 180px;
+      svg {
+        margin-right: 8px;
+      }
+      &:hover {
+        background: rgb(112, 0, 0);
+      }
+    }
+  }
+  .carousel {
+    width: 50%;
+    .carousel-item {
+      width: 200px;
+      height: 300px;
+      img {
+        width: 200px;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      }
+    }
+  }
+}
+//? ---------------> Banner End <---------------
+
+//? ---------------> Movie List Start <---------------
+.list {
+  @include flex(flex-start, flex-end);
+  width: 100%;
+  .list-wrapper {
+    position: relative;
+    padding: 20px;
+    background: $primary-color;
+    width: calc(100% - 250px);
+    h1 {
+      color: $white;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    .next,
+    .prev {
+      position: absolute;
+      top: 53%;
+      transform: translateY(-50%);
+      z-index: 2;
+      transition: all 0.5s ease;
+      opacity: 0.5;
+      cursor: pointer;
+      &:hover {
+        opacity: 1;
+      }
+      path {
+        fill: $white;
+      }
+    }
+    .next {
+      right: 20px;
+    }
+    .prev {
+      left: 25px;
+    }
+    .movie-list {
+      position: relative;
+      overflow-x: auto;
+      width: 100%;
+      white-space: nowrap;
+      &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
+      scroll-snap-type: x mandatory;
+      .movie {
+        position: relative;
+        display: inline-block;
+        position: relative;
+        width: 150px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        scroll-snap-align: start;
+
+        .favorite,
+        .basket {
+          background: $white;
+          position: absolute;
+          z-index: 99;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+          width: 35px;
+          height: 35px;
+          @include flex(center, center);
+          border-radius: 999px;
+          display: none;
+        }
+        .favorite {
+          top: 10px;
+          right: 10px;
+        }
+        .basket {
+          top: 55px;
+          right: 10px;
+        }
+
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+        &:hover {
+          width: 350px;
+        }
+        &:hover .movie-info {
+          opacity: 0;
+          pointer-events: none;
+        }
+        &:hover img {
+          scale: 1.1;
+        }
+
+        &:hover .movie-image .overlay {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        &:hover .movie-image .overlay .left .name,
+        &:hover .movie-image .overlay .left .year,
+        &:hover .movie-image .overlay .left .imdb {
+          transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+          transform: translate(0, 0);
+          opacity: 1;
+        }
+
+        &:hover .movie-image .overlay .right .favorite,
+        &:hover .movie-image .overlay .right .basket {
+          transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+          scale: 1;
+        }
+
+        .movie-image {
+          position: relative;
+          width: 100%;
+          height: 210px;
+          border-radius: 10px;
+          overflow: hidden;
+          transition: all 0.5s ease;
+          .overlay {
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            position: absolute;
+            left: 0;
+            top: 0;
+            @include flex(flex-end, space-between);
+            color: $white;
+            opacity: 0;
+            pointer-events: none;
+            padding: 20px;
+            transition: all 0.5s ease;
+            .left {
+              @include flex;
+              flex-direction: column;
+              gap: 5px;
+              .name {
+                display: inline-block;
+                max-width: 100%;
+                color: $white;
+                font-size: 18px;
+                font-weight: 600;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                transition: all 0.5s ease;
+                transform: translateY(-50px);
+                opacity: 0;
+              }
+              .imdb {
+                @include flex(center);
+                gap: 5px;
+                transition: all 0.5s ease;
+                transform: translateY(-40px);
+                opacity: 0;
+                span {
+                  font-size: 15px;
+                  font-weight: 500;
+                }
+                svg {
+                  path {
+                    fill: $yellow;
+                  }
+                }
+              }
+              .year {
+                transition: all 0.5s ease;
+                background: $icon-bg;
+                color: $white;
+                width: 70px;
+                border-radius: 5px;
+                padding: 3px 0;
+                @include flex(center, center);
+                transform: translateY(-30px);
+                opacity: 0;
+              }
+            }
+            .right {
+              @include flex(center);
+              gap: 10px;
+              .favorite,
+              .basket {
+                @include flex(center, center);
+                width: 35px;
+                height: 35px;
+                border-radius: 999px;
+                background: $white;
+                scale: 0;
+                transition: all 0.5s ease;
+                svg {
+                  path {
+                    fill: $black;
+                  }
+                }
+              }
+            }
+          }
+          img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+          }
+        }
+        .movie-info {
+          padding: 5px;
+          transition: all 0.5s ease;
+          span {
+            display: inline-block;
+            max-width: 100%;
+            color: $white;
+            font-size: 17px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          .short-info {
+            @include flex(center, space-between);
+            .imdb {
+              @include flex(center);
+              gap: 5px;
+              span {
+                font-size: 15px;
+                font-weight: 500;
+              }
+              svg {
+                path {
+                  fill: $yellow;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+//? ---------------> Movie List End <---------------
+
+@keyframes loading {
+  from {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  to {
+    transform: translateY(-50%) rotate(1turn);
+  }
+}
+
+@media (max-width: 991px) {
+  .banner {
+    .banner-wrapper{
+      flex-direction: column;
+    gap: 30px;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.8)
+      ),
+      url(../images/bg.webp) no-repeat center/cover;
+    }
+    .description,
+    .carousel {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 10px 15px;
+    .logo {
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      span {
+        font-size: 20px;
+      }
+    }
+    .actions {
+      .menu-icon {
+        display: block;
+      }
+      .search-icon {
+        @include flex(center, center);
+      }
+
+      .search-box {
+        z-index: 999;
+        position: absolute;
+        background: $primary-color;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+        display: none;
+        &.active {
+          display: flex;
+          .close-icon {
+            @include flex(center, center);
+          }
+        }
+      }
+    }
+  }
+
+  aside {
+    height: calc(100vh - 55px);
+    position: fixed;
+    top: 55px;
+    left: -500px;
+    &.active {
+      left: 0;
+    }
+  }
+
+  .banner {
+    width: 100vw;
+    .banner-wrapper {
+      width: 100%;
+    }
+    min-height: calc(100vh - 55px);
+    .description {
+      h1 {
+        font-size: 40px;
+      }
+    }
+  }
+
+  .list {
+    .list-wrapper {
+      width: 100%;
+      .next,
+      .prev {
+        display: none;
+      }
+      .movie-list {
+        .movie {
+          .basket,
+          .favorite {
+            display: flex;
+          }
+          &:hover {
+            width: 150px;
+          }
+          &:hover img {
+            scale: 1;
+          }
+          &:hover .movie-info {
+            opacity: 1;
+          }
+          .movie-image {
+            .overlay {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 200px) {
+  nav {
+    .logo {
+      span {
+        display: none;
+      }
+    }
+  }
+}
