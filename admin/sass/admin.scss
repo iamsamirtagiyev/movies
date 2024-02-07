@@ -342,82 +342,134 @@ aside {
     @include flex(flex-end, flex-start);
     flex-direction: column;
 
-    .user-table {
+    .user-table{
         width: calc(100% - 250px);
-        height: calc(100vh - 106px);
         background: #252525;
         border-radius: 10px;
-        padding: 20px;
-
-        .user-title {
+        padding: 5px;
+        .user-title{
             background: #444444;
-            border-radius: 10px;
-            color: $white;
-            font-weight: 600;
-            text-align: center;
-            padding: 10px;
             @include flex(center, space-between);
-        }
-
-        .user-list {
-            width: 100%;
-            height: calc(100vh - 106px);
-            border-radius: 10px;
-            padding: 10px 0;
-
-            .user {
-                background: #444444;
-                border-radius: 10px;
+            text-align: left;
+            color: $white;
+            text-transform: capitalize;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            li{
                 padding: 10px;
-                @include flex(center, space-between);
-                &:not(:last-child){
-                    margin-bottom: 10px;
+                width: 100%;
+                &:first-child{
+                    width: auto;
                 }
-
-                .image {
-                    height: 58px;
-
-                    img {
+            }
+        }
+        .user-items{
+            width: 100%;
+            height: calc(100vh - 156px);
+            overflow-y: auto;
+            padding: 0 3px;
+            &::-webkit-scrollbar-track{
+                background: transparent;
+            }
+            .user-main{
+                @include flex(center, space-between);
+                background: #444444;
+                width: 100%;
+                border-radius: 5px;
+                position: relative;
+                margin-bottom: 5px;
+                span{
+                    @include flex(center);
+                    gap: 5px;
+                    padding: 10px;
+                    width: 100%;
+                    font-size: 18px;
+                    color: $white;
+                    &:first-child{
+                        width: auto;
+                        padding: 0 20px;
+                        font-size: 20px;
+                    }
+                    &:last-child{
+                        position: absolute;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        right: 20px;
+                        display: none;
+                        transition: all .5s ease;
+                    }
+                    img{
                         width: 60px;
                         height: 60px;
                         border-radius: 999px;
                         object-fit: cover;
                     }
-                }
-
-                .username,
-                .fullname {
-                    text-align: center;
-                    color: $white;
-                }
-
-                .buttons {
-                    @include flex(center);
-                    gap: 5px;
-
-                    button {
+                    button{
+                        width: 100%;
                         padding: 5px 10px;
-                        color: $white;
                         font-size: 20px;
+                        color: $white;
                         border-radius: 5px;
                         transition: all .5s ease;
-
-                        &:first-child {
+                        &:first-child{
                             background: $yellow;
-
-                            &:hover {
-                                background: $white;
-                                color: $yellow;
-                            }
                         }
-
-                        &:last-child {
+                        &:last-child{
                             background: red;
-
-                            &:hover {
-                                background: $white;
-                                color: red;
-                            }
+                        }
+                        &:first-child:hover{
+                            background: $white;
+                            color: $yellow;
+                        }
+                        &:last-child:hover{
+                            color: red;
+                            background: $white;
+                        }
+                    }
+                }
+            }
+            .user-info{
+                @include flex;
+                flex-direction: column;
+                gap: 10px;
+                background: #444444;
+                border-radius: 5px;
+                overflow: hidden;
+                height: 0;
+                transition: all .5s ease;
+                span{
+                    @include flex(center);
+                    gap: 5px;
+                    color: $white;
+                    font-weight: 500;
+                    &:last-child{
+                        width: 100%;
+                    }
+                    p{
+                        color: $gray;
+                    }
+                    button{
+                        width: 100%;
+                        padding: 5px 10px;
+                        font-size: 20px;
+                        color: $white;
+                        border-radius: 5px;
+                        transition: all .5s ease;
+                        &:first-child{
+                            background: $yellow;
+                        }
+                        &:last-child{
+                            background: red;
+                        }
+                        &:first-child:hover{
+                            background: $white;
+                            color: $yellow;
+                        }
+                        &:last-child:hover{
+                            color: red;
+                            background: $white;
                         }
                     }
                 }
@@ -428,7 +480,38 @@ aside {
 
 //? ---------------> Users End <---------------
 
-
+@media (max-width: 992px){
+    .user-wrapper{
+        .user-table{
+            .user-title{
+                display: none;
+            }
+            .user-items{
+                .user-main{
+                    justify-content: flex-start;
+                    span{
+                        width: auto;
+                        &:nth-child(4),
+                        &:nth-child(5),
+                        &:nth-child(6){
+                            display: none;
+                        }
+                        &:last-child{
+                            display: block;
+                        }
+                        &:last-child.active{
+                            transform: rotate(-180deg);
+                        }
+                    }
+                }
+                .user-info.active{
+                    padding: 10px;
+                    height: 170px;
+                }
+            }
+        }
+    }
+}
 
 @media (max-width: 768px) {
     nav {
@@ -469,6 +552,35 @@ aside {
 
         &.active {
             left: 0;
+        }
+    }
+
+    .user-wrapper{
+        .user-table{
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 576px){
+    .user-wrapper{
+        .user-table{
+            .user-items{
+                .user{
+                    .user-main{
+                        span{
+                            font-size: 14px;
+                            &.id{
+                                padding: 10px;
+                            }
+                        }
+                        img{
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                }
+            }
         }
     }
 }

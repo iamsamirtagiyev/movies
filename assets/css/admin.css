@@ -342,81 +342,173 @@ aside .menu li button i {
 }
 .user-wrapper .user-table {
   width: calc(100% - 250px);
-  height: calc(100vh - 106px);
   background: #252525;
   border-radius: 10px;
-  padding: 20px;
+  padding: 5px;
 }
 .user-wrapper .user-table .user-title {
   background: #444444;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
   color: #fff;
-  font-weight: 600;
-  text-align: center;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.user-wrapper .user-table .user-list {
-  width: 100%;
-  height: calc(100vh - 106px);
-  border-radius: 10px;
-  padding: 10px 0;
-}
-.user-wrapper .user-table .user-list .user {
-  background: #444444;
-  border-radius: 10px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.user-wrapper .user-table .user-list .user:not(:last-child) {
+  text-transform: capitalize;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
   margin-bottom: 10px;
 }
-.user-wrapper .user-table .user-list .user .image {
-  height: 58px;
+.user-wrapper .user-table .user-title li {
+  padding: 10px;
+  width: 100%;
 }
-.user-wrapper .user-table .user-list .user .image img {
+.user-wrapper .user-table .user-title li:first-child {
+  width: auto;
+}
+.user-wrapper .user-table .user-items {
+  width: 100%;
+  height: calc(100vh - 156px);
+  overflow-y: auto;
+  padding: 0 3px;
+}
+.user-wrapper .user-table .user-items::-webkit-scrollbar-track {
+  background: transparent;
+}
+.user-wrapper .user-table .user-items .user-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #444444;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.user-wrapper .user-table .user-items .user-main span {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+  padding: 10px;
+  width: 100%;
+  font-size: 18px;
+  color: #fff;
+}
+.user-wrapper .user-table .user-items .user-main span:first-child {
+  width: auto;
+  padding: 0 20px;
+  font-size: 20px;
+}
+.user-wrapper .user-table .user-items .user-main span:last-child {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+  display: none;
+  transition: all 0.5s ease;
+}
+.user-wrapper .user-table .user-items .user-main span img {
   width: 60px;
   height: 60px;
   border-radius: 999px;
   object-fit: cover;
 }
-.user-wrapper .user-table .user-list .user .username,
-.user-wrapper .user-table .user-list .user .fullname {
-  text-align: center;
+.user-wrapper .user-table .user-items .user-main span button {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 20px;
   color: #fff;
+  border-radius: 5px;
+  transition: all 0.5s ease;
 }
-.user-wrapper .user-table .user-list .user .buttons {
+.user-wrapper .user-table .user-items .user-main span button:first-child {
+  background: #fab700;
+}
+.user-wrapper .user-table .user-items .user-main span button:last-child {
+  background: red;
+}
+.user-wrapper .user-table .user-items .user-main span button:first-child:hover {
+  background: #fff;
+  color: #fab700;
+}
+.user-wrapper .user-table .user-items .user-main span button:last-child:hover {
+  color: red;
+  background: #fff;
+}
+.user-wrapper .user-table .user-items .user-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  background: #444444;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 0;
+  transition: all 0.5s ease;
+}
+.user-wrapper .user-table .user-items .user-info span {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 5px;
-}
-.user-wrapper .user-table .user-list .user .buttons button {
-  padding: 5px 10px;
   color: #fff;
+  font-weight: 500;
+}
+.user-wrapper .user-table .user-items .user-info span:last-child {
+  width: 100%;
+}
+.user-wrapper .user-table .user-items .user-info span p {
+  color: gray;
+}
+.user-wrapper .user-table .user-items .user-info span button {
+  width: 100%;
+  padding: 5px 10px;
   font-size: 20px;
+  color: #fff;
   border-radius: 5px;
   transition: all 0.5s ease;
 }
-.user-wrapper .user-table .user-list .user .buttons button:first-child {
+.user-wrapper .user-table .user-items .user-info span button:first-child {
   background: #fab700;
 }
-.user-wrapper .user-table .user-list .user .buttons button:first-child:hover {
+.user-wrapper .user-table .user-items .user-info span button:last-child {
+  background: red;
+}
+.user-wrapper .user-table .user-items .user-info span button:first-child:hover {
   background: #fff;
   color: #fab700;
 }
-.user-wrapper .user-table .user-list .user .buttons button:last-child {
-  background: red;
-}
-.user-wrapper .user-table .user-list .user .buttons button:last-child:hover {
-  background: #fff;
+.user-wrapper .user-table .user-items .user-info span button:last-child:hover {
   color: red;
+  background: #fff;
 }
 
+@media (max-width: 992px) {
+  .user-wrapper .user-table .user-title {
+    display: none;
+  }
+  .user-wrapper .user-table .user-items .user-main {
+    justify-content: flex-start;
+  }
+  .user-wrapper .user-table .user-items .user-main span {
+    width: auto;
+  }
+  .user-wrapper .user-table .user-items .user-main span:nth-child(4), .user-wrapper .user-table .user-items .user-main span:nth-child(5), .user-wrapper .user-table .user-items .user-main span:nth-child(6) {
+    display: none;
+  }
+  .user-wrapper .user-table .user-items .user-main span:last-child {
+    display: block;
+  }
+  .user-wrapper .user-table .user-items .user-main span:last-child.active {
+    transform: rotate(-180deg);
+  }
+  .user-wrapper .user-table .user-items .user-info.active {
+    padding: 10px;
+    height: 170px;
+  }
+}
 @media (max-width: 768px) {
   nav {
     padding: 10px 15px;
@@ -446,6 +538,21 @@ aside .menu li button i {
   }
   aside.active {
     left: 0;
+  }
+  .user-wrapper .user-table {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .user-wrapper .user-table .user-items .user .user-main span {
+    font-size: 14px;
+  }
+  .user-wrapper .user-table .user-items .user .user-main span.id {
+    padding: 10px;
+  }
+  .user-wrapper .user-table .user-items .user .user-main img {
+    width: 50px;
+    height: 50px;
   }
 }
 @media (max-width: 200px) {
