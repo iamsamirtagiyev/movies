@@ -57,21 +57,23 @@ ul {
 .movies .movie-wrapper .genre {
   position: relative;
 }
-.movies .movie-wrapper .genre svg {
+.movies .movie-wrapper .genre i {
   cursor: pointer;
+  color: #fff;
   position: absolute;
+  font-size: 30px;
   top: 50%;
   transform: translateY(-50%);
   width: 30px;
   height: 30px;
 }
-.movies .movie-wrapper .genre svg.left {
-  left: 5px;
+.movies .movie-wrapper .genre i.left {
+  left: 0px;
 }
-.movies .movie-wrapper .genre svg.right {
-  right: 5px;
+.movies .movie-wrapper .genre i.right {
+  right: 0px;
 }
-.movies .movie-wrapper .genre svg path {
+.movies .movie-wrapper .genre i path {
   fill: #fff;
 }
 .movies .movie-wrapper .genre .genre-slider {
@@ -82,6 +84,7 @@ ul {
   margin: 0 auto;
   width: 95%;
   padding: 5px;
+  scroll-snap-type: x mandatory;
 }
 .movies .movie-wrapper .genre .genre-slider::after, .movies .movie-wrapper .genre .genre-slider:before {
   content: "";
@@ -114,6 +117,11 @@ ul {
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
+  scroll-snap-align: start;
+  transition: all 0.5s ease;
+}
+.movies .movie-wrapper .genre .genre-slider span:hover {
+  background: #585858;
 }
 .movies .movie-wrapper .genre .genre-slider span:not(:last-child) {
   margin-right: 2px;
@@ -230,12 +238,20 @@ ul {
   font-size: 15px;
 }
 
+@media (max-width: 992px) {
+  .movies .movie-wrapper .genre .genre-slider {
+    width: 90%;
+  }
+}
 @media (max-width: 768px) {
   .movies .movie-wrapper {
     width: 100%;
   }
   .movies .movie-wrapper h1 {
     font-size: 40px;
+  }
+  .movies .movie-wrapper .genre i {
+    display: none;
   }
   .movies .movie-wrapper .movie-list .movie-item .image .add {
     display: none;
@@ -796,10 +812,12 @@ form p a {
 }
 .account-wrapper .account .watch-wrapper .watchlist {
   width: 100%;
-  padding: 20px;
-  overflow-x: auto;
+  margin: auto;
+  overflow-x: hidden;
   white-space: nowrap;
   scroll-snap-type: x mandatory;
+  padding: 10px;
+  border-radius: 10px;
 }
 .account-wrapper .account .watch-wrapper .watchlist::-webkit-scrollbar {
   height: 1px;
@@ -810,47 +828,58 @@ form p a {
 .account-wrapper .account .watch-wrapper .watchlist::-webkit-scrollbar-track {
   display: none;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container, .account-wrapper .account .watch-wrapper .watchlist .history-container {
-  width: 105%;
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container,
+.account-wrapper .account .watch-wrapper .watchlist .history-container {
+  margin: auto;
+  width: 101%;
   display: inline-block;
   scroll-snap-align: start;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item {
-  width: 100%;
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 10px;
   transition: all 0.5s ease;
   border-radius: 10px;
   padding: 5px;
+  gap: 10px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:not(:last-child), .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:not(:last-child) {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:not(:last-child),
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:not(:last-child) {
   margin-bottom: 10px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:hover, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:hover {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:hover,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:hover {
   background: rgba(255, 255, 255, 0.3);
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover {
+  height: 100px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
   width: 150px;
   height: 100px;
   object-fit: cover;
   border-radius: 5px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  padding-right: 5px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail .movie-name, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail .movie-name {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail .movie-name,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail .movie-name {
   color: #fff;
   font-size: 35px;
   font-weight: 600;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
   user-select: none;
   display: flex;
   align-items: center;
@@ -863,10 +892,14 @@ form p a {
   font-size: 15px;
   border-radius: 8px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
   display: none;
+  width: 30px;
+  height: 30px;
 }
-.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button:hover, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button:hover {
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button:hover,
+.account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button:hover {
   background: rgb(109, 2, 2);
 }
 
@@ -891,20 +924,33 @@ form p a {
   .account-wrapper .account .watch-wrapper .buttons button {
     font-size: 16px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
+  .account-wrapper .account .watch-wrapper .watchlist {
+    overflow-x: auto;
+  }
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover {
+    height: 100px;
+  }
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
     width: 180px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail .desc .movie-name, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail .desc .movie-name {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail .desc .movie-name,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail .desc .movie-name {
     font-size: 20px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
     font-size: 14px;
     border-radius: 7px;
+    padding: 5px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button span, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button span {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button span,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button span {
     display: none;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
     display: block;
   }
 }
@@ -912,7 +958,8 @@ form p a {
   .account-wrapper .account {
     width: 100%;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
     width: 150px;
     height: 80px;
   }
@@ -928,19 +975,27 @@ form p a {
   .account-wrapper .account .profile .profile-detail .btn button svg {
     display: none;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover {
+    height: 80px;
+  }
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail {
     align-items: flex-start;
     flex-direction: column;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
     padding: 5px 15px;
     border-radius: 5px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button span, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button span {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button span,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button span {
     display: inline-block;
     font-size: 14px;
   }
-  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
+  .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button svg,
+  .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button svg {
     display: none;
   }
 }
@@ -1253,7 +1308,7 @@ aside .menu li.theme .theme-options {
   transition: all 0.5s ease;
 }
 aside .menu li.theme .theme-options.active {
-  height: 170px;
+  height: 180px;
 }
 aside .menu li.theme .theme-options span {
   display: flex;

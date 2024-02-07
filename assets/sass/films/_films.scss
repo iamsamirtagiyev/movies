@@ -1,33 +1,44 @@
-.movies {width: 100%;
+.movies {
+  width: 100%;
   @include flex(flex-start, flex-end);
+
   .movie-wrapper {
     width: calc(100vw - 250px);
     padding: 20px;
     padding-top: 0;
+
     h1 {
       color: $white;
       font-size: 50px;
     }
-    .genre{
+
+    .genre {
       position: relative;
-      svg{
+
+      i {
         cursor: pointer;
+        color: $white;
         position: absolute;
+        font-size: 30px;
         top: 50%;
         transform: translateY(-50%);
         width: 30px;
         height: 30px;
-        &.left{
-          left: 5px;
+
+        &.left {
+          left: 0px;
         }
-        &.right{
-          right: 5px;
+
+        &.right {
+          right: 0px;
         }
-        path{
+
+        path {
           fill: $white;
         }
       }
-      .genre-slider{
+
+      .genre-slider {
         position: relative;
         overflow-x: auto;
         overflow-y: hidden;
@@ -35,8 +46,10 @@
         margin: 0 auto;
         width: 95%;
         padding: 5px;
-    
-        &::after, &:before{
+        scroll-snap-type: x mandatory;
+
+        &::after,
+        &:before {
           content: '';
           position: absolute;
           top: 50%;
@@ -44,49 +57,65 @@
           width: 40px;
           height: 40px;
         }
-        &::after{
+
+        &::after {
           background: linear-gradient(90deg, $primary-color, transparent);
           left: 0;
         }
-        &::before{
+
+        &::before {
           background: linear-gradient(90deg, transparent, $primary-color);
           right: 0;
         }
-        &::-webkit-scrollbar{
+
+        &::-webkit-scrollbar {
           height: 1px;
         }
-        &::-webkit-scrollbar-thumb{
+
+        &::-webkit-scrollbar-thumb {
           display: none;
         }
-        &::-webkit-scrollbar-track{
+
+        &::-webkit-scrollbar-track {
           display: none;
         }
-        span{
+
+        span {
           background: #444444;
           padding: 5px 15px;
           color: $white;
           border-radius: 5px;
           cursor: pointer;
-          &:not(:last-child){
+          scroll-snap-align: start;
+          transition: all .5s ease;
+          &:hover{
+            background: #585858;
+          }
+
+          &:not(:last-child) {
             margin-right: 2px;
           }
         }
       }
     }
+
     .movie-list {
       padding-top: 30px;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       gap: 50px 10px;
+
       .movie-item {
         user-select: none;
         position: relative;
         cursor: pointer;
+
         .image {
           position: relative;
           width: 100%;
           height: 280px;
           border-radius: 10px;
+
           .add,
           .favorite,
           .basket {
@@ -99,30 +128,37 @@
             transition: all .5s ease;
             transition-timing-function: cubic-bezier(.5, 1.6, .4, .7);
           }
+
           .add {
             z-index: 1;
             bottom: 10px;
             right: 10px;
-            &.active{
+
+            &.active {
               transform: rotate(135deg);
             }
           }
+
           .favorite {
             right: 10px;
             bottom: 10px;
+
             &.active {
               right: 10px;
               bottom: 60px;
             }
           }
+
           .basket {
             right: 10px;
             bottom: 10px;
+
             &.active {
               right: 60px;
               bottom: 10px;
             }
           }
+
           img {
             width: 100%;
             height: 280px;
@@ -130,11 +166,13 @@
             border-radius: 10px;
           }
         }
+
         .desc {
           @include flex;
           gap: 5px;
           flex-direction: column;
           padding: 5px;
+
           span {
             display: inline-block;
             color: $white;
@@ -145,23 +183,28 @@
             white-space: nowrap;
             width: 100%;
           }
+
           div {
             @include flex(center, space-between);
             width: 100%;
+
             .imdb {
               @include flex(center);
               gap: 5px;
+
               span {
                 color: $white;
                 width: auto;
                 font-size: 16px;
               }
+
               svg {
                 path {
                   fill: $yellow;
                 }
               }
             }
+
             .year {
               background: $icon-bg;
               width: 90px;
@@ -179,23 +222,45 @@
   }
 }
 
-@media (max-width: 768px){
+@media(max-width: 992px){
   .movies{
     .movie-wrapper{
+      .genre{
+        .genre-slider{
+          width: 90%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .movies {
+    .movie-wrapper {
       width: 100%;
-      h1{
+
+      h1 {
         font-size: 40px;
       }
-      .movie-list{
-        .movie-item{
-          .image{
-            .add{
+
+      .genre {
+        i {
+          display: none;
+        }
+      }
+
+      .movie-list {
+        .movie-item {
+          .image {
+            .add {
               display: none;
             }
-            .favorite{
+
+            .favorite {
               top: 10px;
             }
-            .basket{
+
+            .basket {
               top: 60px;
             }
           }

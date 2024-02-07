@@ -1,38 +1,45 @@
-
-.account-wrapper{
+.account-wrapper {
     width: 100%;
     @include flex(flex-start, flex-end);
-    .account{
+
+    .account {
         width: calc(100% - 250px);
         min-height: calc(100vh - 66px);
         padding: 20px;
-        .profile{
+
+        .profile {
             @include flex(center);
             gap: 20px;
-            .image{
-                img{
+
+            .image {
+                img {
                     width: 150px;
                     height: 150px;
                     object-fit: cover;
                     border-radius: 999px;
                 }
             }
-            .profile-detail{
+
+            .profile-detail {
                 @include flex;
                 flex-direction: column;
                 color: $white;
-                .fullname{
+
+                .fullname {
                     font-size: 40px;
                     font-weight: 600;
                 }
-                .username{
+
+                .username {
                     color: $gray;
                 }
-                .btn{
+
+                .btn {
                     margin: 20px 0;
                     @include flex(center);
                     gap: 10px;
-                    button{
+
+                    button {
                         @include flex(center);
                         gap: 8px;
                         background: darkred;
@@ -41,24 +48,28 @@
                         transition: all .5s ease;
                         font-size: 18px;
                         border-radius: 8px;
-                        &:hover{
+
+                        &:hover {
                             background: rgb(109, 2, 2);
                         }
                     }
                 }
-                
+
             }
         }
-        .watch-wrapper{
+
+        .watch-wrapper {
             margin-top: 50px;
             width: 100%;
-            .buttons{
+
+            .buttons {
                 position: relative;
                 @include flex;
                 gap: 20px;
                 background: #444444;
                 border-radius: 8px;
-                &::after{
+
+                &::after {
                     content: '';
                     position: absolute;
                     width: calc(50% - 20px);
@@ -68,13 +79,16 @@
                     background: darkred;
                     border-radius: 5px;
                 }
-                &.left::after{
+
+                &.left::after {
                     left: 5px;
                 }
-                &.right::after{
+
+                &.right::after {
                     right: 5px;
                 }
-                button{
+
+                button {
                     z-index: 1;
                     width: 100%;
                     font-size: 18px;
@@ -83,58 +97,72 @@
                     background: transparent;
                 }
             }
-            .watchlist{
+
+            .watchlist {
                 width: 100%;
-                padding: 20px;
-                overflow-x: auto;
+                margin: auto;
+                overflow-x: hidden;
                 white-space: nowrap;
                 scroll-snap-type: x mandatory;
+                padding: 10px;
+                border-radius: 10px;
+
                 &::-webkit-scrollbar {
                     height: 1px;
-                  }
-                  &::-webkit-scrollbar-thumb {
+                }
+
+                &::-webkit-scrollbar-thumb {
                     display: none;
-                  }
-                  &::-webkit-scrollbar-track {
+                }
+
+                &::-webkit-scrollbar-track {
                     display: none;
-                  }
-                .favorites-container, .history-container{
-                    width: 105%;
+                }
+
+                .favorites-container,
+                .history-container {
+                    margin: auto;
+                    width: 101%;
                     display: inline-block;
                     scroll-snap-align: start;
-                    .movie-item{
-                        width: 100%;
+
+                    .movie-item {
                         @include flex;
-                        gap: 10px;
                         transition: all .5s ease;
                         border-radius: 10px;
                         padding: 5px;
-                        &:not(:last-child){
+                        gap: 10px;
+
+                        &:not(:last-child) {
                             margin-bottom: 10px;
                         }
 
-                        &:hover{
+                        &:hover {
                             background: rgba(255, 255, 255, .3);
                         }
-                        .cover{
-                            img{
+
+                        .cover {
+                            height: 100px;
+                            img {
                                 width: 150px;
                                 height: 100px;
                                 object-fit: cover;
                                 border-radius: 5px;
                             }
                         }
-                        .movie-detail{
+
+                        .movie-detail {
                             width: 100%;
                             @include flex(center, space-between);
                             gap: 10px;
-                            padding-right: 5px;
-                            .movie-name{
+
+                            .movie-name {
                                 color: $white;
                                 font-size: 35px;
                                 font-weight: 600;
                             }
-                            button{
+
+                            button {
                                 user-select: none;
                                 @include flex(center);
                                 gap: 8px;
@@ -144,10 +172,14 @@
                                 transition: all .5s ease;
                                 font-size: 15px;
                                 border-radius: 8px;
-                                svg{
+
+                                svg {
                                     display: none;
+                                    width: 30px;
+                                    height: 30px;
                                 }
-                                &:hover{
+
+                                &:hover {
                                     background: rgb(109, 2, 2);
                                 }
                             }
@@ -159,27 +191,31 @@
     }
 }
 
-@media(max-width: 992px){
-    .account-wrapper{
-        .account{
-            .profile{
-                .image{
-                    img{
+@media(max-width: 992px) {
+    .account-wrapper {
+        .account {
+            .profile {
+                .image {
+                    img {
                         width: 100px;
                         height: 100px;
                     }
                 }
-                .profile-detail{
-                    .fullname{
+
+                .profile-detail {
+                    .fullname {
                         font-size: 30px;
                     }
-                    .username{
+
+                    .username {
                         font-size: 15px;
                     }
-                    .btn{
-                        button{
+
+                    .btn {
+                        button {
                             font-size: 15px;
-                            svg{
+
+                            svg {
                                 width: 18px;
                                 height: 18px;
                             }
@@ -187,33 +223,43 @@
                     }
                 }
             }
-            .watch-wrapper{
-                .buttons{
-                    button{
+
+            .watch-wrapper {
+                .buttons {
+                    button {
                         font-size: 16px;
                     }
                 }
-                .watchlist{
-                    .favorites-container, .history-container{
-                        .movie-item{
-                            .cover{
-                                img{
+
+                .watchlist {
+                    overflow-x: auto;
+                    .favorites-container,
+                    .history-container {
+                        .movie-item {
+                            .cover {
+                                height: 100px;
+                                img {
                                     width: 180px;
                                 }
                             }
-                            .movie-detail{
-                                .desc{
-                                    .movie-name{
+
+                            .movie-detail {
+                                .desc {
+                                    .movie-name {
                                         font-size: 20px;
                                     }
                                 }
-                                button{
+
+                                button {
                                     font-size: 14px;
-                                    border-radius:7px;
-                                    span{
+                                    border-radius: 7px;
+                                    padding: 5px;
+
+                                    span {
                                         display: none;
                                     }
-                                    svg{
+
+                                    svg {
                                         display: block;
                                     }
                                 }
@@ -225,16 +271,20 @@
         }
     }
 }
-@media(max-width: 768px){
-    .account-wrapper{
-        .account{
+
+@media(max-width: 768px) {
+    .account-wrapper {
+        .account {
             width: 100%;
-            .watch-wrapper{
-                .watchlist{
-                    .favorites-container, .history-container{
-                        .movie-item{
-                            .cover{
-                                img{
+
+            .watch-wrapper {
+                .watchlist {
+
+                    .favorites-container,
+                    .history-container {
+                        .movie-item {
+                            .cover {
+                                img {
                                     width: 150px;
                                     height: 80px;
                                 }
@@ -246,38 +296,50 @@
         }
     }
 }
-@media(max-width: 576px){
-    .account-wrapper{
-        .account{
+
+@media(max-width: 576px) {
+    .account-wrapper {
+        .account {
             width: 100%;
-            .profile{
-                .profile-detail{
-                    .btn{
-                        button{
+
+            .profile {
+                .profile-detail {
+                    .btn {
+                        button {
                             padding: 5px 15px;
                             border-radius: 5px;
-                            svg{
+
+                            svg {
                                 display: none;
                             }
                         }
                     }
                 }
             }
-            .watch-wrapper{
-                .watchlist{
-                    .favorites-container, .history-container{
-                        .movie-item{
-                            .movie-detail{
+
+            .watch-wrapper {
+                .watchlist {
+
+                    .favorites-container,
+                    .history-container {
+                        .movie-item {
+                            .cover{
+                                height: 80px;
+                            }
+                            .movie-detail {
                                 align-items: flex-start;
                                 flex-direction: column;
-                                button{
+
+                                button {
                                     padding: 5px 15px;
                                     border-radius: 5px;
-                                    span{
+
+                                    span {
                                         display: inline-block;
                                         font-size: 14px;
                                     }
-                                    svg{
+
+                                    svg {
                                         display: none;
                                     }
                                 }
