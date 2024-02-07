@@ -25,6 +25,9 @@
                     font-size: 40px;
                     font-weight: 600;
                 }
+                .username{
+                    color: $gray;
+                }
                 .btn{
                     margin: 20px 0;
                     @include flex(center);
@@ -81,12 +84,24 @@
                 }
             }
             .watchlist{
+                width: 100%;
                 padding: 20px;
                 overflow-x: auto;
                 white-space: nowrap;
+                scroll-snap-type: x mandatory;
+                &::-webkit-scrollbar {
+                    height: 1px;
+                  }
+                  &::-webkit-scrollbar-thumb {
+                    display: none;
+                  }
+                  &::-webkit-scrollbar-track {
+                    display: none;
+                  }
                 .favorites-container, .history-container{
-                    width: 100%;
+                    width: 105%;
                     display: inline-block;
+                    scroll-snap-align: start;
                     .movie-item{
                         width: 100%;
                         @include flex;
@@ -113,12 +128,14 @@
                             width: 100%;
                             @include flex(center, space-between);
                             gap: 10px;
+                            padding-right: 5px;
                             .movie-name{
                                 color: $white;
                                 font-size: 35px;
                                 font-weight: 600;
                             }
                             button{
+                                user-select: none;
                                 @include flex(center);
                                 gap: 8px;
                                 background: darkred;
@@ -127,8 +144,142 @@
                                 transition: all .5s ease;
                                 font-size: 15px;
                                 border-radius: 8px;
+                                svg{
+                                    display: none;
+                                }
                                 &:hover{
                                     background: rgb(109, 2, 2);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width: 992px){
+    .account-wrapper{
+        .account{
+            .profile{
+                .image{
+                    img{
+                        width: 100px;
+                        height: 100px;
+                    }
+                }
+                .profile-detail{
+                    .fullname{
+                        font-size: 30px;
+                    }
+                    .username{
+                        font-size: 15px;
+                    }
+                    .btn{
+                        button{
+                            font-size: 15px;
+                            svg{
+                                width: 18px;
+                                height: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+            .watch-wrapper{
+                .buttons{
+                    button{
+                        font-size: 16px;
+                    }
+                }
+                .watchlist{
+                    .favorites-container, .history-container{
+                        .movie-item{
+                            .cover{
+                                img{
+                                    width: 180px;
+                                }
+                            }
+                            .movie-detail{
+                                .desc{
+                                    .movie-name{
+                                        font-size: 20px;
+                                    }
+                                }
+                                button{
+                                    font-size: 14px;
+                                    border-radius:7px;
+                                    span{
+                                        display: none;
+                                    }
+                                    svg{
+                                        display: block;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 768px){
+    .account-wrapper{
+        .account{
+            width: 100%;
+            .watch-wrapper{
+                .watchlist{
+                    .favorites-container, .history-container{
+                        .movie-item{
+                            .cover{
+                                img{
+                                    width: 150px;
+                                    height: 80px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media(max-width: 576px){
+    .account-wrapper{
+        .account{
+            width: 100%;
+            .profile{
+                .profile-detail{
+                    .btn{
+                        button{
+                            padding: 5px 15px;
+                            border-radius: 5px;
+                            svg{
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            .watch-wrapper{
+                .watchlist{
+                    .favorites-container, .history-container{
+                        .movie-item{
+                            .movie-detail{
+                                align-items: flex-start;
+                                flex-direction: column;
+                                button{
+                                    padding: 5px 15px;
+                                    border-radius: 5px;
+                                    span{
+                                        display: inline-block;
+                                        font-size: 14px;
+                                    }
+                                    svg{
+                                        display: none;
+                                    }
                                 }
                             }
                         }

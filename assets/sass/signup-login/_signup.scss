@@ -41,7 +41,7 @@ form {
   padding: 20px;
   @include flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 
   h1{
     text-align: center;
@@ -62,9 +62,14 @@ form {
     @include flex(center);
     width: 100%;
     position: relative;
-    background: #252525;
+    border: solid 2px #252525;
+    background: transparent;
     border-radius: 5px;
     padding: 10px;
+    transition: all .5s ease;
+    &:focus-within{
+      border-color: red;
+    }
     svg{
       width: 30px;
       height: 30px;
@@ -81,16 +86,17 @@ form {
     }
     input{
       width: 100%;
-      font-size: 18px;
+      font-size: 16px;
       background: transparent;
       padding: 0 8px;
-      padding-top: 5px;
       color: $white;
       font-weight: 500;
       &:focus ~ label, &:valid ~ label{
         color: rgb(255, 0, 0);
         font-size: 14px;
-        top: 10px;
+        top: -1px;
+        background: $black;
+        padding: 0 5px;
       }
     }
   }
