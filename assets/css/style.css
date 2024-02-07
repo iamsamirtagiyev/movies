@@ -690,6 +690,158 @@ form p a {
     height: 400px;
   }
 }
+.account-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.account-wrapper .account {
+  width: calc(100% - 250px);
+  min-height: calc(100vh - 66px);
+  padding: 20px;
+}
+.account-wrapper .account .profile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.account-wrapper .account .profile .image img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 999px;
+}
+.account-wrapper .account .profile .profile-detail {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: #fff;
+}
+.account-wrapper .account .profile .profile-detail .fullname {
+  font-size: 40px;
+  font-weight: 600;
+}
+.account-wrapper .account .profile .profile-detail .btn {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.account-wrapper .account .profile .profile-detail .btn button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  background: darkred;
+  padding: 10px 20px;
+  color: #fff;
+  transition: all 0.5s ease;
+  font-size: 18px;
+  border-radius: 8px;
+}
+.account-wrapper .account .profile .profile-detail .btn button:hover {
+  background: rgb(109, 2, 2);
+}
+.account-wrapper .account .watch-wrapper {
+  margin-top: 50px;
+  width: 100%;
+}
+.account-wrapper .account .watch-wrapper .buttons {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  background: #444444;
+  border-radius: 8px;
+}
+.account-wrapper .account .watch-wrapper .buttons::after {
+  content: "";
+  position: absolute;
+  width: calc(50% - 20px);
+  height: calc(100% - 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: darkred;
+  border-radius: 5px;
+}
+.account-wrapper .account .watch-wrapper .buttons.left::after {
+  left: 5px;
+}
+.account-wrapper .account .watch-wrapper .buttons.right::after {
+  right: 5px;
+}
+.account-wrapper .account .watch-wrapper .buttons button {
+  z-index: 1;
+  width: 100%;
+  font-size: 18px;
+  padding: 10px 0;
+  color: #fff;
+  background: transparent;
+}
+.account-wrapper .account .watch-wrapper .watchlist {
+  padding: 20px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container, .account-wrapper .account .watch-wrapper .watchlist .history-container {
+  width: 100%;
+  display: inline-block;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+  transition: all 0.5s ease;
+  border-radius: 10px;
+  padding: 5px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:not(:last-child), .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:not(:last-child) {
+  margin-bottom: 10px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item:hover, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .cover img, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail .movie-name, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail .movie-name {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 600;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  background: darkred;
+  padding: 10px 20px;
+  color: #fff;
+  transition: all 0.5s ease;
+  font-size: 15px;
+  border-radius: 8px;
+}
+.account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button:hover, .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button:hover {
+  background: rgb(109, 2, 2);
+}
+
 body {
   overflow-x: hidden;
   background: #0f1115;
