@@ -75,6 +75,16 @@ form {
       height: 30px;
       cursor: pointer;
     }
+    i{
+      font-size: 20px;
+      margin-left: 10px;
+      &.bi-check-circle-fill{
+        color: green;
+      }
+      &.bi-x-circle-fill{
+        color: red;
+      }
+    }
     label{
       position: absolute;
       top: 50%;

@@ -6,6 +6,10 @@
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
 }
+* *::-moz-selection {
+  background: darkred;
+  color: #fff;
+}
 * *::selection {
   background: darkred;
   color: #fff;
@@ -99,7 +103,8 @@ body {
 .user-wrapper .user-table table tr td img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .user-wrapper .user-table table tr td button {
@@ -198,7 +203,8 @@ body {
 .comment-wrapper .comment-table table tr td img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .comment-wrapper .comment-table table tr td button {
@@ -255,7 +261,8 @@ nav .logo {
 nav .logo img {
   width: 40px;
   height: 40px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 nav .logo span {
   color: #fff;
@@ -359,6 +366,9 @@ nav .actions .search-box .search input {
   color: #fff;
   border-bottom: none;
   height: auto;
+}
+nav .actions .search-box .search input::-moz-placeholder {
+  color: #7c7c78;
 }
 nav .actions .search-box .search input::placeholder {
   color: #7c7c78;
@@ -516,6 +526,85 @@ aside .menu li a i,
 aside .menu li button i {
   color: #fff;
   font-size: 20px;
+}
+
+.dashboard-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.dashboard-wrapper .dashboard {
+  width: calc(100% - 250px);
+  height: calc(100vh - 66px);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+}
+.dashboard-wrapper .dashboard .graphics {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics {
+  width: 50%;
+  padding: 20px;
+  background: #e3e3e3;
+  border-radius: 10px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box {
+  padding: 20px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress span {
+  font-size: 18px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress .progress-bar {
+  position: relative;
+  width: 100%;
+  height: 10px;
+  background: rgb(185, 185, 185);
+  border-radius: 50px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress .progress-bar::after {
+  position: absolute;
+  content: "";
+  width: 60%;
+  height: 100%;
+  background: rebeccapurple;
+  border-radius: 50px;
+}
+.dashboard-wrapper .dashboard .graphics .circle-wrapper {
+  background: #e3e3e3;
+  border-radius: 10px;
+  width: 50%;
+  padding: 20px;
+}
+.dashboard-wrapper .dashboard .graphics .circle-wrapper .circle {
+  margin: auto;
+  width: 305px;
+  height: 305px;
+  border-radius: 999px;
+  background-image: conic-gradient(blue 0%, blue 70%, rgb(185, 185, 185) 70%, rgb(185, 185, 185) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-wrapper .dashboard .graphics .circle-wrapper .circle span {
+  font-size: 80px;
+  background: #e3e3e3;
+  width: 250px;
+  height: 250px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: blue;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

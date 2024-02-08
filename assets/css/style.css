@@ -6,6 +6,10 @@
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
 }
+* *::-moz-selection {
+  background: darkred;
+  color: #fff;
+}
 * *::selection {
   background: darkred;
   color: #fff;
@@ -133,7 +137,9 @@ ul {
   gap: 50px 10px;
 }
 .movies .movie-wrapper .movie-list .movie-item {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   position: relative;
   cursor: pointer;
 }
@@ -184,7 +190,8 @@ ul {
 .movies .movie-wrapper .movie-list .movie-item .image img {
   width: 100%;
   height: 280px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
 }
 .movies .movie-wrapper .movie-list .movie-item .desc {
@@ -349,6 +356,16 @@ form .input-box svg {
   height: 30px;
   cursor: pointer;
 }
+form .input-box i {
+  font-size: 20px;
+  margin-left: 10px;
+}
+form .input-box i.bi-check-circle-fill {
+  color: green;
+}
+form .input-box i.bi-x-circle-fill {
+  color: red;
+}
 form .input-box label {
   position: absolute;
   top: 50%;
@@ -469,7 +486,8 @@ form p a {
 .poster-wrapper .poster .poster-image img {
   width: 300px;
   height: 450px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
 }
 .poster-wrapper .poster .poster-desc {
@@ -639,7 +657,8 @@ form p a {
 .poster-wrapper .comments .comment .profile-img img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .poster-wrapper .comments .comment .comment-detail .username {
@@ -734,7 +753,8 @@ form p a {
 .account-wrapper .account .profile .image img {
   width: 150px;
   height: 150px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .account-wrapper .account .profile .profile-detail {
@@ -861,7 +881,8 @@ form p a {
 .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
   width: 150px;
   height: 100px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 5px;
 }
 .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail,
@@ -880,7 +901,9 @@ form p a {
 }
 .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button,
 .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1032,7 +1055,8 @@ nav .logo {
 nav .logo img {
   width: 40px;
   height: 40px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 nav .logo span {
   color: #fff;
@@ -1121,6 +1145,9 @@ nav .actions .search-box .search input {
   color: #fff;
   border-bottom: none;
   height: auto;
+}
+nav .actions .search-box .search input::-moz-placeholder {
+  color: #7c7c78;
 }
 nav .actions .search-box .search input::placeholder {
   color: #7c7c78;
@@ -1262,7 +1289,9 @@ aside .menu li.active span {
   font-weight: 500;
 }
 aside .menu li.theme {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1479,7 +1508,8 @@ aside footer button:hover {
 .banner .carousel .carousel-item img {
   width: 200px;
   height: 300px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
@@ -1606,7 +1636,8 @@ aside footer button:hover {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
   position: absolute;
   left: 0;
   top: 0;
@@ -1693,7 +1724,8 @@ aside footer button:hover {
 .list .list-wrapper .movie-list .movie .movie-image img {
   width: 100%;
   height: 210px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 10px;
   transition: all 0.5s ease;
 }

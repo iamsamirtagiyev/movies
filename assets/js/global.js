@@ -9,6 +9,7 @@ const searchBox = document.querySelector('.search-box')
 const activeTheme = document.querySelector('.active-theme')
 const themeOptions = document.querySelector('.theme-options')
 const options = themeOptions.querySelectorAll('span')
+const accountBtn = document.querySelector('.account')
 
 //!---------------------> Functions <---------------------
 
@@ -35,6 +36,15 @@ const selectTheme = (e) => {
     activeTheme.querySelector('span').innerHTML = e.target.innerHTML
 }
 
+const toAccount = () => {
+    if(localStorage.getItem('users') == null){
+        window.location = './signup.html'
+    }
+    else{
+        window.location = './account.html'
+    }
+}
+
 //!---------------------> Events <---------------------
 
 menuIcon.addEventListener('click', toggleMenu)
@@ -45,4 +55,5 @@ activeTheme.addEventListener('click', toggleTheme)
 options.forEach(option => {
     option.addEventListener('click', selectTheme)
 })
+accountBtn.addEventListener('click', toAccount)
 
