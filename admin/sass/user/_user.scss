@@ -96,46 +96,7 @@ body {
 //? ---------------> Users End <---------------
 
 @media (max-width: 768px) {
-  nav {
-    padding: 10px 15px;
-
-    .logo {
-      img {
-        width: 30px;
-        height: 30px;
-      }
-
-      span {
-        font-size: 20px;
-      }
-    }
-
-    .actions {
-      .logout {
-        padding: 5px 15px;
-        font-size: 15px;
-
-        i {
-          font-size: 18px;
-        }
-      }
-
-      .menu-icon {
-        display: block;
-      }
-    }
-  }
-
-  aside {
-    height: calc(100vh - 55px);
-    position: fixed;
-    top: 55px;
-    left: -500px;
-
-    &.active {
-      left: 0;
-    }
-  }
+  
   .user-wrapper {
     .user-table {
       width: 100%;
@@ -143,12 +104,4 @@ body {
   }
 }
 
-@media (max-width: 200px) {
-  nav {
-    .logo {
-      span {
-        display: none;
-      }
-    }
-  }
-}
+
