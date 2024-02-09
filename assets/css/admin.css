@@ -6,10 +6,6 @@
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
 }
-* *::-moz-selection {
-  background: darkred;
-  color: #fff;
-}
 * *::selection {
   background: darkred;
   color: #fff;
@@ -103,8 +99,7 @@ body {
 .user-wrapper .user-table table tr td img {
   width: 50px;
   height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 999px;
 }
 .user-wrapper .user-table table tr td button {
@@ -203,8 +198,7 @@ body {
 .comment-wrapper .comment-table table tr td img {
   width: 50px;
   height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 999px;
 }
 .comment-wrapper .comment-table table tr td button {
@@ -261,8 +255,7 @@ nav .logo {
 nav .logo img {
   width: 40px;
   height: 40px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 nav .logo span {
   color: #fff;
@@ -366,9 +359,6 @@ nav .actions .search-box .search input {
   color: #fff;
   border-bottom: none;
   height: auto;
-}
-nav .actions .search-box .search input::-moz-placeholder {
-  color: #7c7c78;
 }
 nav .actions .search-box .search input::placeholder {
   color: #7c7c78;

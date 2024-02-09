@@ -5,7 +5,6 @@
 @import "./signup-login/signup";
 @import "./details/detail";
 @import "./account/account";
-@import "./admin/admin";
 
 body {
   overflow-x: hidden;
@@ -323,24 +322,7 @@ aside {
         @include flex(center);
         background: transparent;
         gap: 8px;
-        &.basket {
-          .icon {
-            @include flex(center);
-            gap: 8px;
-          }
-          justify-content: space-between;
-          .count {
-            @include flex(center, center);
-            font-size: 15px;
-            background: red;
-            width: 25px;
-            height: 25px;
-            border-radius: 999px;
-            color: $white;
-            font-weight: 500;
-            display: none;
-          }
-        }
+        
         span {
           font-size: 17px;
           color: $white;
@@ -349,6 +331,20 @@ aside {
           path {
             fill: $white;
           }
+        }
+      }
+      button{
+        img{
+          width: 30px;
+          height:30px;
+          object-fit: cover;
+          border-radius: 999px;
+        }
+        span{
+          width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
     }

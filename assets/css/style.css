@@ -6,10 +6,6 @@
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
 }
-* *::-moz-selection {
-  background: darkred;
-  color: #fff;
-}
 * *::selection {
   background: darkred;
   color: #fff;
@@ -137,9 +133,7 @@ ul {
   gap: 50px 10px;
 }
 .movies .movie-wrapper .movie-list .movie-item {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   position: relative;
   cursor: pointer;
 }
@@ -190,8 +184,7 @@ ul {
 .movies .movie-wrapper .movie-list .movie-item .image img {
   width: 100%;
   height: 280px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
 }
 .movies .movie-wrapper .movie-list .movie-item .desc {
@@ -277,6 +270,51 @@ body {
   min-height: 100vh;
 }
 
+.toast {
+  z-index: 999;
+  position: fixed;
+  max-width: 400px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  top: 20px;
+  right: -100%;
+  color: #fff;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  transition: all 0.5s ease;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+  text-align: center;
+}
+.toast.active {
+  right: 20px;
+}
+.toast i {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+.toast.success {
+  background: rgba(0, 255, 0, 0.3);
+  border: solid 2px green;
+}
+.toast.success i {
+  background: green;
+}
+.toast.error {
+  background: rgba(255, 0, 0, 0.3);
+  border: solid 2px red;
+}
+.toast.error i {
+  background: red;
+}
+
 .video {
   position: fixed;
   width: 100%;
@@ -311,6 +349,7 @@ form {
   z-index: 1;
   margin: 20px;
   background: #000;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   width: 100%;
   max-width: 500px;
   border-radius: 10px;
@@ -413,40 +452,6 @@ form p a {
   color: darkred;
 }
 
-@media (max-width: 575px) {
-  form .input-box {
-    padding: 5px 10px;
-  }
-  form .input-box svg {
-    width: 20px;
-    height: 20px;
-  }
-  form .input-box label {
-    font-size: 15px;
-    left: 35px;
-  }
-  form .input-box input {
-    font-size: 15px;
-  }
-  form .input-box input:focus ~ label, form .input-box input:valid ~ label {
-    color: rgb(255, 0, 0);
-    font-size: 12px;
-    top: 10px;
-  }
-  form .input-box button {
-    font-size: 15px;
-    border: none;
-    outline: none;
-  }
-  form .input-box button:hover {
-    background: rgb(112, 3, 3);
-    border: none;
-    outline: none;
-  }
-  form .input-box p {
-    font-size: 15px;
-  }
-}
 .poster-wrapper {
   width: 100%;
   min-height: calc(100vh - 66px);
@@ -486,8 +491,7 @@ form p a {
 .poster-wrapper .poster .poster-image img {
   width: 300px;
   height: 450px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
 }
 .poster-wrapper .poster .poster-desc {
@@ -657,8 +661,7 @@ form p a {
 .poster-wrapper .comments .comment .profile-img img {
   width: 50px;
   height: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 999px;
 }
 .poster-wrapper .comments .comment .comment-detail .username {
@@ -753,8 +756,7 @@ form p a {
 .account-wrapper .account .profile .image img {
   width: 150px;
   height: 150px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 999px;
 }
 .account-wrapper .account .profile .profile-detail {
@@ -881,8 +883,7 @@ form p a {
 .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .cover img {
   width: 150px;
   height: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 5px;
 }
 .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail,
@@ -901,9 +902,7 @@ form p a {
 }
 .account-wrapper .account .watch-wrapper .watchlist .favorites-container .movie-item .movie-detail button,
 .account-wrapper .account .watch-wrapper .watchlist .history-container .movie-item .movie-detail button {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -1055,8 +1054,7 @@ nav .logo {
 nav .logo img {
   width: 40px;
   height: 40px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 nav .logo span {
   color: #fff;
@@ -1145,9 +1143,6 @@ nav .actions .search-box .search input {
   color: #fff;
   border-bottom: none;
   height: auto;
-}
-nav .actions .search-box .search input::-moz-placeholder {
-  color: #7c7c78;
 }
 nav .actions .search-box .search input::placeholder {
   color: #7c7c78;
@@ -1289,9 +1284,7 @@ aside .menu li.active span {
   font-weight: 500;
 }
 aside .menu li.theme {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -1359,34 +1352,24 @@ aside .menu li a, aside .menu li button {
   background: transparent;
   gap: 8px;
 }
-aside .menu li a.basket, aside .menu li button.basket {
-  justify-content: space-between;
-}
-aside .menu li a.basket .icon, aside .menu li button.basket .icon {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 8px;
-}
-aside .menu li a.basket .count, aside .menu li button.basket .count {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  background: red;
-  width: 25px;
-  height: 25px;
-  border-radius: 999px;
-  color: #fff;
-  font-weight: 500;
-  display: none;
-}
 aside .menu li a span, aside .menu li button span {
   font-size: 17px;
   color: #fff;
 }
 aside .menu li a svg path, aside .menu li button svg path {
   fill: #fff;
+}
+aside .menu li button img {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 999px;
+}
+aside .menu li button span {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 aside footer {
   border-top: solid 1px rgba(255, 255, 255, 0.1);
@@ -1508,8 +1491,7 @@ aside footer button:hover {
 .banner .carousel .carousel-item img {
   width: 200px;
   height: 300px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
@@ -1636,8 +1618,7 @@ aside footer button:hover {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
-  -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   position: absolute;
   left: 0;
   top: 0;
@@ -1724,8 +1705,7 @@ aside footer button:hover {
 .list .list-wrapper .movie-list .movie .movie-image img {
   width: 100%;
   height: 210px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 10px;
   transition: all 0.5s ease;
 }

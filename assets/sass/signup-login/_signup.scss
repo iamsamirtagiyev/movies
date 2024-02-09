@@ -3,6 +3,47 @@ body{
   min-height: 100vh;
 }
 
+.toast{
+  z-index: 999;
+  position: fixed;
+  max-width: 400px;
+  padding: 10px 15px;
+  border-radius: 6px;
+  top: 20px;
+  right: -100%;
+  color: $white;
+  font-weight: 500;
+  @include flex(center);
+  gap: 7px;
+  transition: all .5s ease;
+  transition-timing-function: cubic-bezier(.5, 1.6, .4, .7);
+  text-align: center;
+  &.active{
+    right: 20px;
+  }
+  i{
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    @include flex(center, center);
+    font-size: 22px;
+  }
+  &.success{
+    background: rgba(0, 255, 0, .3);
+    border: solid 2px green;
+    i{
+      background: green;
+    }
+  }
+  &.error{
+    background: rgba(255, 0, 0, .3);
+    border: solid 2px red;
+    i{
+      background: red;
+    }
+  }
+}
+
 .video{
   position: fixed;
   width: 100%;
@@ -34,6 +75,7 @@ form {
   z-index: 1;
   margin: 20px;
   background: $black;
+  box-shadow: 0 0 5px rgba(255, 255, 255, .5);
   width: 100%;
   max-width: 500px;
   border-radius: 10px;
@@ -135,38 +177,38 @@ form {
 }
 
 @media(max-width: 575px){
-  form{
-    .input-box{
-      padding: 5px 10px;
-      svg{
-        width: 20px;
-        height: 20px;
-      }
-      label{
-        font-size: 15px;
-        left: 35px;
-      }
-      input{
-        font-size: 15px;
-        &:focus ~ label, &:valid ~ label{
-          color: rgb(255, 0, 0);
-          font-size: 12px;
-          top: 10px;
-        }
-      }
-      button{
-        font-size: 15px;
-        border: none;
-        outline: none;
-        &:hover{
-          background: rgb(112, 3, 3);
-          border: none;
-        outline: none;
-        }
-      }
-      p{
-        font-size: 15px;
-      }
-    }
-  }
+  // form{
+  //   .input-box{
+  //     // padding: 5px 10px;
+  //     svg{
+  //       width: 20px;
+  //       height: 20px;
+  //     }
+  //     label{
+  //       font-size: 15px;
+  //       left: 35px;
+  //     }
+  //     input{
+  //       font-size: 15px;
+  //       &:focus ~ label, &:valid ~ label{
+  //         color: rgb(255, 0, 0);
+  //         font-size: 12px;
+  //         top: 10px;
+  //       }
+  //     }
+  //     button{
+  //       font-size: 15px;
+  //       border: none;
+  //       outline: none;
+  //       &:hover{
+  //         background: rgb(112, 3, 3);
+  //         border: none;
+  //       outline: none;
+  //       }
+  //     }
+  //     p{
+  //       font-size: 15px;
+  //     }
+  //   }
+  // }
 }
