@@ -15,6 +15,27 @@
     .genre {
       position: relative;
 
+      &::after,
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+      }
+
+      &::after {
+        background: linear-gradient(90deg, $primary-color, transparent);
+        left: 30px;
+      }
+
+      &::before {
+        background: linear-gradient(90deg, transparent, $primary-color);
+        right: 30px;
+        z-index: 1;
+      }
+
       i {
         cursor: pointer;
         color: $white;
@@ -48,26 +69,6 @@
         padding: 5px;
         scroll-snap-type: x mandatory;
 
-        &::after,
-        &:before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 40px;
-          height: 40px;
-        }
-
-        &::after {
-          background: linear-gradient(90deg, $primary-color, transparent);
-          left: 0;
-        }
-
-        &::before {
-          background: linear-gradient(90deg, transparent, $primary-color);
-          right: 0;
-        }
-
         &::-webkit-scrollbar {
           height: 1px;
         }
@@ -87,8 +88,8 @@
           border-radius: 5px;
           cursor: pointer;
           scroll-snap-align: start;
-          transition: all .5s ease;
-          &:hover{
+          transition: all 0.5s ease;
+          &:hover {
             background: #585858;
           }
 
@@ -125,8 +126,8 @@
             height: 40px;
             border-radius: 999px;
             @include flex(center, center);
-            transition: all .5s ease;
-            transition-timing-function: cubic-bezier(.5, 1.6, .4, .7);
+            transition: all 0.5s ease;
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
           }
 
           .add {
@@ -222,11 +223,11 @@
   }
 }
 
-@media(max-width: 992px){
-  .movies{
-    .movie-wrapper{
-      .genre{
-        .genre-slider{
+@media (max-width: 992px) {
+  .movies {
+    .movie-wrapper {
+      .genre {
+        .genre-slider {
           width: 90%;
         }
       }

@@ -3,6 +3,7 @@
 const movieList = document.querySelectorAll('.movie-list')
 const nextBtns = document.querySelectorAll('.next')
 const prevBtns = document.querySelectorAll('.prev')
+const movies = document.querySelectorAll('.movie')
 
 
 
@@ -17,5 +18,11 @@ nextBtns.forEach((nextBtn, index) => {
 prevBtns.forEach((prevBtn, index) => {
     prevBtn.addEventListener('click', () => {
         movieList[index].scrollLeft -= 100
+    })
+})
+
+movieList.forEach(movie => {
+    movie.addEventListener('click', () => {
+        window.location = './detail.html'
     })
 })

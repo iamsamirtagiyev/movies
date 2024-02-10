@@ -5,7 +5,6 @@
   box-sizing: border-box !important;
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
-  transition: all 0.5s ease;
 }
 * *::selection {
   background: darkred;
@@ -58,6 +57,23 @@ ul {
 .movies .movie-wrapper .genre {
   position: relative;
 }
+.movies .movie-wrapper .genre::after, .movies .movie-wrapper .genre:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+}
+.movies .movie-wrapper .genre::after {
+  background: linear-gradient(90deg, #0f1115, transparent);
+  left: 30px;
+}
+.movies .movie-wrapper .genre::before {
+  background: linear-gradient(90deg, transparent, #0f1115);
+  right: 30px;
+  z-index: 1;
+}
 .movies .movie-wrapper .genre i {
   cursor: pointer;
   color: #fff;
@@ -86,22 +102,6 @@ ul {
   width: 95%;
   padding: 5px;
   scroll-snap-type: x mandatory;
-}
-.movies .movie-wrapper .genre .genre-slider::after, .movies .movie-wrapper .genre .genre-slider:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-}
-.movies .movie-wrapper .genre .genre-slider::after {
-  background: linear-gradient(90deg, #0f1115, transparent);
-  left: 0;
-}
-.movies .movie-wrapper .genre .genre-slider::before {
-  background: linear-gradient(90deg, transparent, #0f1115);
-  right: 0;
 }
 .movies .movie-wrapper .genre .genre-slider::-webkit-scrollbar {
   height: 1px;
