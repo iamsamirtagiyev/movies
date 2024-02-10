@@ -21,6 +21,10 @@ let isPassword = false
 
 //!----------------------> Functions <----------------------
 
+if(localStorage.getItem('user')){
+    window.location = './index.html'
+}
+
 const showToast = (type, message) => {
     const toast = document.querySelector(`.${type}`)
     const icon = toast.querySelector('i')
@@ -46,6 +50,7 @@ const checkFirstName = (e) => {
         return isFirstName = false
     }
 }
+
 const checkLastName = (e) => {
     const regex = /^[a-z]+$/i
     const checkIcon = e.target.parentElement.querySelector('#check')
@@ -153,7 +158,7 @@ const createUser = (e) => {
         }
         axios.post('http://localhost:3000/user', user).then(response => {
             localStorage.setItem('user', JSON.stringify(user))
-            window.location = './index.html'
+            window.location = './account.html'
         }) 
         
     }

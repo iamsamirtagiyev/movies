@@ -11,6 +11,7 @@ body {
   background: $primary-color;
   @include flex;
   flex-direction: column;
+  transition: all 0.5s ease;
 }
 
 //? ---------------> Navbar Start <---------------
@@ -25,6 +26,7 @@ nav {
   background: $primary-color;
   @include flex(center, space-between);
   box-shadow: 0 0 0 transparent;
+  transition: all 0.5s ease;
   .logo {
     @include flex(center);
     gap: 5px;
@@ -301,9 +303,9 @@ aside {
           color: $white;
           overflow: hidden;
           height: 0;
-          transition: all .5s ease;
-          &.active{
-            height: 180px;
+          transition: all 0.5s ease;
+          &.active {
+            height: 133px;
           }
           span {
             @include flex(center);
@@ -318,11 +320,12 @@ aside {
           }
         }
       }
-      a, button {
+      a,
+      button {
         @include flex(center);
         background: transparent;
         gap: 8px;
-        
+
         span {
           font-size: 17px;
           color: $white;
@@ -333,18 +336,20 @@ aside {
           }
         }
       }
-      button{
-        img{
+      button {
+        img {
           width: 30px;
-          height:30px;
+          height: 30px;
           object-fit: cover;
           border-radius: 999px;
         }
-        span{
+
+        span {
           width: 100%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+          text-transform: capitalize;
         }
       }
     }
@@ -396,6 +401,7 @@ aside {
     width: calc(100% - 250px);
     min-height: calc(100vh - 80px);
     border-radius: 10px;
+    transition: all 0.5s ease;
     background: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.8),
@@ -483,6 +489,7 @@ aside {
     padding: 20px;
     background: $primary-color;
     width: calc(100% - 250px);
+
     h1 {
       color: $white;
       font-size: 30px;
@@ -725,15 +732,15 @@ aside {
 
 @media (max-width: 991px) {
   .banner {
-    .banner-wrapper{
+    .banner-wrapper {
       flex-direction: column;
-    gap: 30px;
-    background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.8)
-      ),
-      url(../images/bg.webp) no-repeat center/cover;
+      gap: 30px;
+      background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.8),
+          rgba(0, 0, 0, 0.8)
+        ),
+        url(../images/bg.webp) no-repeat center/cover;
     }
     .description,
     .carousel {

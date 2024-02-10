@@ -28,6 +28,7 @@
                 .fullname {
                     font-size: 40px;
                     font-weight: 600;
+                    text-transform: capitalize;
                 }
 
                 .username {
@@ -78,6 +79,7 @@
                     transform: translateY(-50%);
                     background: darkred;
                     border-radius: 5px;
+                    transition: all .5s ease;
                 }
 
                 &.left::after {
@@ -101,7 +103,7 @@
             .watchlist {
                 width: 100%;
                 margin: auto;
-                overflow-x: hidden;
+                overflow-x: auto;
                 white-space: nowrap;
                 scroll-snap-type: x mandatory;
                 padding: 10px;
@@ -118,6 +120,8 @@
                 &::-webkit-scrollbar-track {
                     display: none;
                 }
+
+                
 
                 .favorites-container,
                 .history-container {

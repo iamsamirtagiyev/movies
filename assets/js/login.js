@@ -13,6 +13,10 @@ let isPassword = false
 
 //!----------------------> Functions <----------------------
 
+if(localStorage.getItem('user')){
+    window.location = './index.html'
+}
+
 const showToast = (type, message) => {
     const toast = document.querySelector(`.${type}`)
     const icon = toast.querySelector('i')
@@ -72,18 +76,30 @@ const showHide = (e) => {
 const loginUser = (e) => {
     e.preventDefault()
 
-    if(localStorage.getItem('user') == null){
-        showToast('error', 'User is not registered')
+    if(password.value == 'admin123' && usernameOrEmail.value == 'admin'){
+        window.location = './admin/admin.html'
     }
-    else if(usernameOrEmail.value == JSON.parse(localStorage.getItem('user')).username || usernameOrEmail.value == JSON.parse(localStorage.getItem('user')).email){
-        showToast('error', 'Username or password is incorrect')
-    }
-    else if(password.value == JSON.parse(localStorage.getItem('user')).password){
-        showToast('error', 'Username or password is incorrect')
-    }
-    else{
-        window.location = './index.html'
-    }
+
+    axios.get('http://localhost:3000/user').then(response => {
+        const isUser = response.data.find(user => {
+            if(user.username == usernameOrEmail.value || user.email == usernameOrEmail.value){
+                return user
+            }
+        })
+        
+        if(!isUser){
+            showToast('error', 'User not found')
+        }
+        else{
+            if(isUser.password != password.value){
+                showToast('error', 'Wrong password')
+            }
+            else{
+                localStorage.setItem('user', JSON.stringify(isUser))
+                window.location = './account.html'
+            }
+        }
+    })
 }
 
 
