@@ -11,8 +11,27 @@
 </head>
 
 <body>
-  <!--?--------------- Navbar Start ----------------->
   <nav>
+    <!--?--------------- Modal Start ----------------->
+    <div class="modal-wrapper active">
+      <form class="modal">
+        <input type="file" id="img">
+        <label for="img">
+          <img src="./assets/images/bg.webp" alt="image">
+          <i class="bi bi-camera"></i>
+        </label>
+        <div class="fullname-box">
+          <input type="text" class="first-name" placeholder="First Name">
+          <input type="text" class="last-name" placeholder="Last Name">
+        </div>
+        <input type="text" class="username" placeholder="Username">
+        <input type="email" class="email" placeholder="Email">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+    <!--?--------------- Modal End ----------------->
+
+    <!--?--------------- Navbar Start ----------------->
     <a href="index.html" class="logo">
       <img src="./assets/images/logo-white.png" alt="logo" />
       <span>Movies</span>

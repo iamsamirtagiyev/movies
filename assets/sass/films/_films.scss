@@ -10,6 +10,7 @@
     h1 {
       color: $white;
       font-size: 50px;
+      margin-bottom: 30px;
     }
 
     .genre {
@@ -40,11 +41,9 @@
         cursor: pointer;
         color: $white;
         position: absolute;
-        font-size: 30px;
+        font-size: 35px;
         top: 50%;
         transform: translateY(-50%);
-        width: 30px;
-        height: 30px;
 
         &.left {
           left: 0px;
