@@ -16,7 +16,7 @@ body {
 
 //? ---------------> Navbar Start <---------------
 nav {
-  z-index: 999;
+  z-index: 997;
   width: 100%;
   position: sticky;
   left: 0;
@@ -235,7 +235,7 @@ nav {
 }
 
 aside {
-  z-index: 998;
+  z-index: 997;
   background: $primary-color;
   width: 250px;
   height: calc(100vh - 66px);
@@ -770,7 +770,7 @@ aside {
       }
 
       .search-box {
-        z-index: 999;
+        z-index: 998;
         position: absolute;
         background: $primary-color;
         left: 0;

@@ -336,7 +336,7 @@ aside {
 
   .dashboard {
     width: calc(100% - 250px);
-    height: calc(100vh - 66px);
+    min-height: calc(100vh - 66px);
     background: rgb(255, 255, 255);
     padding: 20px;
 
@@ -451,6 +451,25 @@ aside {
 
     &.active {
       left: 0;
+    }
+  }
+
+  .dashboard-wrapper{
+    .dashboard{
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 576px){
+  .dashboard-wrapper{
+    .dashboard{
+      .graphics{
+        flex-direction: column;
+        .movies-graphics, .circle-wrapper{
+          width: 100%;
+        }
+      }
     }
   }
 }

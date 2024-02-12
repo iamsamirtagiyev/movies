@@ -6,6 +6,10 @@
   font-family: "Poppins", sans-serif !important;
   scroll-behavior: smooth;
 }
+* *::-moz-selection {
+  background: darkred;
+  color: #fff;
+}
 * *::selection {
   background: darkred;
   color: #fff;
@@ -99,10 +103,12 @@ body {
 .user-wrapper .user-table table tr td img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .user-wrapper .user-table table tr td button {
+  width: 100%;
   font-size: 20px;
   color: #fff;
   transition: all 0.5s ease;
@@ -198,7 +204,8 @@ body {
 .comment-wrapper .comment-table table tr td img {
   width: 50px;
   height: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 999px;
 }
 .comment-wrapper .comment-table table tr td button {
@@ -255,7 +262,8 @@ nav .logo {
 nav .logo img {
   width: 40px;
   height: 40px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 nav .logo span {
   color: #fff;
@@ -359,6 +367,9 @@ nav .actions .search-box .search input {
   color: #fff;
   border-bottom: none;
   height: auto;
+}
+nav .actions .search-box .search input::-moz-placeholder {
+  color: #7c7c78;
 }
 nav .actions .search-box .search input::placeholder {
   color: #7c7c78;
@@ -525,7 +536,7 @@ aside .menu li button i {
 }
 .dashboard-wrapper .dashboard {
   width: calc(100% - 250px);
-  height: calc(100vh - 66px);
+  min-height: calc(100vh - 66px);
   background: rgb(255, 255, 255);
   padding: 20px;
 }
@@ -626,6 +637,17 @@ aside .menu li button i {
   }
   aside.active {
     left: 0;
+  }
+  .dashboard-wrapper .dashboard {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .dashboard-wrapper .dashboard .graphics {
+    flex-direction: column;
+  }
+  .dashboard-wrapper .dashboard .graphics .movies-graphics, .dashboard-wrapper .dashboard .graphics .circle-wrapper {
+    width: 100%;
   }
 }
 @media (max-width: 200px) {

@@ -1,5 +1,5 @@
 .modal-wrapper {
-  z-index: 999;
+  z-index: 998;
   position: fixed;
   left: 0;
   top: 0;
@@ -10,26 +10,41 @@
   pointer-events: none;
   transition: all 0.5s ease;
   @include flex(center, center);
+
   &.active {
     opacity: 1;
     pointer-events: all;
   }
+
   .modal {
+    position: relative;
     @include flex(center, center);
     flex-direction: column;
     gap: 10px;
+    overflow: hidden;
+    transform: scaleY(0);
+    transition: all .5s ease;
+    transition-timing-function: cubic-bezier(.5, 1.6, .4, .7);
+
+    &.active{
+      transform: scaleY(1);
+    }
+
     input[type="file"] {
       display: none;
     }
+
     label {
-        position: relative;
+      position: relative;
+
       img {
         width: 100px;
         height: 100px;
         border-radius: 999px;
         object-fit: cover;
       }
-      i{
+
+      i {
         position: absolute;
         top: 0;
         left: 0;
@@ -41,13 +56,26 @@
         font-size: 25px;
         opacity: 0;
         transition: all .5s ease;
-        &:hover{
-            opacity: 1;
+
+        &:hover {
+          opacity: 1;
         }
       }
     }
-    input{
-        width: 100%;
+
+    input {
+      width: 100%;
+      font-size: 18px;
+      background: $black;
+      border: solid 2px rgba(255, 255, 255, 0.3);
+      padding: 10px 20px;
+      border-radius: 5px;
+      color: $white;
+      font-weight: 500;
+      transition: all .5s ease;
+      &:focus{
+        border-color: red;
+      }
     }
   }
 }
@@ -123,25 +151,23 @@
         gap: 20px;
         background: #444444;
         border-radius: 8px;
-
-        &::after {
-          content: "";
-          position: absolute;
-          width: calc(50% - 20px);
-          height: calc(100% - 10px);
-          top: 50%;
-          transform: translateY(-50%);
-          background: darkred;
-          border-radius: 5px;
-          transition: all 0.5s ease;
+        padding: 5px;
+        
+        &.left{
+          .favorites{
+            background: darkred;
+          }
+          .history{
+            background: transparent;
+          }
         }
-
-        &.left::after {
-          left: 5px;
-        }
-
-        &.right::after {
-          right: 5px;
+        &.right{
+          .favorites{
+            background: transparent;
+          }
+          .history{
+            background: darkred;
+          }
         }
 
         button {
@@ -151,6 +177,8 @@
           padding: 10px 0;
           color: $white;
           background: transparent;
+          border-radius: 5px;
+          transition: all .5s ease;
         }
       }
 
@@ -199,6 +227,7 @@
 
             .cover {
               height: 100px;
+
               img {
                 width: 150px;
                 height: 100px;
@@ -289,11 +318,13 @@
 
         .watchlist {
           overflow-x: auto;
+
           .favorites-container,
           .history-container {
             .movie-item {
               .cover {
                 height: 100px;
+
                 img {
                   width: 180px;
                 }
@@ -335,6 +366,7 @@
 
       .watch-wrapper {
         .watchlist {
+
           .favorites-container,
           .history-container {
             .movie-item {
@@ -374,12 +406,14 @@
 
       .watch-wrapper {
         .watchlist {
+
           .favorites-container,
           .history-container {
             .movie-item {
               .cover {
                 height: 80px;
               }
+
               .movie-detail {
                 align-items: flex-start;
                 flex-direction: column;

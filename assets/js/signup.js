@@ -130,7 +130,7 @@ const createUser = (e) => {
 
   axios.get("http://localhost:3000/user").then((response) => {
     const isUser = response.data.find((user) => {
-      if (user.email == email.value) {
+      if (user.email == email.value || user.username == username.value) {
         return user;
       }
     });

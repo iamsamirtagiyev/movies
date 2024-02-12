@@ -1,12 +1,3 @@
 {
-  "user": [
-    {
-      "fullname": "samir tagiyev",
-      "username": "samir",
-      "email": "samir@gmail.com",
-      "password": "1234567",
-      "image": "./assets/images/user.png",
-      "id": 1
-    }
-  ]
+  "user": []
 }
