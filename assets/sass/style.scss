@@ -27,15 +27,18 @@ nav {
   @include flex(center, space-between);
   box-shadow: 0 0 0 transparent;
   transition: all 0.5s ease;
+
   .logo {
     @include flex(center);
     gap: 5px;
     transition: all 0.5s ease;
+
     img {
       width: 40px;
       height: 40px;
       object-fit: cover;
     }
+
     span {
       color: $white;
       font-size: 30px;
@@ -47,6 +50,7 @@ nav {
   .actions {
     @include flex(center);
     gap: 10px;
+
     .search-icon {
       background: $icon-bg;
       width: 35px;
@@ -56,6 +60,7 @@ nav {
       display: none;
       font-size: 20px;
       cursor: pointer;
+
       svg {
         width: 22px;
         height: 22px;
@@ -63,16 +68,19 @@ nav {
         opacity: 0.5;
         transition: all 0.5s ease;
       }
+
       &:hover svg {
         opacity: 1;
       }
     }
+
     .search-box {
       width: 300px;
       position: relative;
       @include flex(center);
       height: auto;
       gap: 10px;
+
       .close-icon {
         border-radius: 4px;
         width: 35px;
@@ -80,9 +88,11 @@ nav {
         background: $icon-bg;
         display: none;
         cursor: pointer;
+
         &:hover svg {
           color: $white;
         }
+
         svg {
           color: #919191;
           width: 25px;
@@ -90,10 +100,12 @@ nav {
           transition: all 0.5s ease;
         }
       }
+
       .search {
         width: 100%;
         position: relative;
         height: auto;
+
         svg {
           color: $white;
           opacity: 0.4;
@@ -105,6 +117,7 @@ nav {
           transform: translateY(-50%);
           left: 10px;
         }
+
         input {
           width: 100%;
           font-size: 15px;
@@ -118,18 +131,22 @@ nav {
           color: $white;
           border-bottom: none;
           height: auto;
+
           &::placeholder {
             color: #7c7c78;
           }
+
           &:hover {
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6);
           }
+
           &:focus {
             box-shadow: 0 0 0 2px $white;
             border-bottom: 0px solid transparent;
             -webkit-box-shadow: 0 0 0 0 transparent;
           }
         }
+
         &::after {
           display: none;
           content: "";
@@ -152,6 +169,7 @@ nav {
         &:focus-within svg {
           opacity: 0;
         }
+
         &:focus-within input {
           padding: 10px 15px;
         }
@@ -166,9 +184,11 @@ nav {
       border-radius: 5px;
       background: $icon-bg;
       padding: 0 5px;
+
       &:hover span {
         background: $white;
       }
+
       &.active span {
         &:first-child {
           width: 75%;
@@ -177,10 +197,12 @@ nav {
           transform: translate(-50%, -50%) rotate(-315deg);
           background: $white;
         }
+
         &:nth-child(2) {
           transform: translate(-50%, -50%) rotate(315deg);
           background: $white;
         }
+
         &:last-child {
           width: 75%;
           top: 50%;
@@ -189,23 +211,27 @@ nav {
           background: $white;
         }
       }
+
       span {
         position: absolute;
         background: rgba(255, 255, 255, 0.4);
         height: 3px;
         border-radius: 50px;
         transition: all 0.5s ease;
+
         &:first-child {
           width: 36%;
           left: 5px;
           top: 6px;
         }
+
         &:nth-child(2) {
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           width: 75%;
         }
+
         &:last-child {
           width: 36%;
           bottom: 6px;
@@ -215,6 +241,7 @@ nav {
     }
   }
 }
+
 //? ---------------> Navbar End <---------------
 
 //? ---------------> Sidebar Start <---------------
@@ -228,6 +255,7 @@ nav {
   transition: all 0.5s ease;
   opacity: 0;
   pointer-events: none;
+
   &.active {
     opacity: 1;
     pointer-events: all;
@@ -243,44 +271,56 @@ aside {
   transition: all 0.5s ease;
   position: fixed;
   top: 66px;
+
   &::-webkit-scrollbar-thumb {
     background: transparent;
   }
+
   &:hover::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
   }
 
   .menu {
     padding: 10px;
+
     li {
       border-radius: 5px;
       padding: 10px 20px;
       transition: all 0.5s ease;
+
       &:hover {
         background: rgba(255, 255, 255, 0.1);
       }
+
       &:not(:last-child) {
         margin-bottom: 5px;
       }
+
       &.active {
         background: rgba(255, 255, 255, 0.2);
+
         span {
           font-weight: 500;
         }
       }
+
       &.theme {
         user-select: none;
         @include flex;
         gap: 5px;
         padding: 0;
         flex-direction: column;
+
         &:hover {
           background: transparent;
         }
+
         &:hover .active-theme {
           background: rgba(255, 255, 255, 0.1);
         }
+
         cursor: pointer;
+
         .active-theme {
           @include flex(center, space-between);
           color: $white;
@@ -288,12 +328,14 @@ aside {
           transition: all 0.5s ease;
           border-radius: 5px;
           padding: 10px 20px;
+
           span {
             @include flex(center);
             gap: 10px;
             font-size: 16px;
           }
         }
+
         .theme-options {
           background: rgba(255, 255, 255, 0.1);
           border-radius: 5px;
@@ -304,9 +346,11 @@ aside {
           overflow: hidden;
           height: 0;
           transition: all 0.5s ease;
+
           &.active {
             height: 133px;
           }
+
           span {
             @include flex(center);
             gap: 10px;
@@ -314,12 +358,14 @@ aside {
             padding: 10px 20px;
             transition: all 0.5s ease;
             font-size: 16px;
+
             &:hover {
               background: rgba(255, 255, 255, 0.2);
             }
           }
         }
       }
+
       a,
       button {
         @include flex(center);
@@ -330,12 +376,14 @@ aside {
           font-size: 17px;
           color: $white;
         }
+
         svg {
           path {
             fill: $white;
           }
         }
       }
+
       button {
         img {
           width: 30px;
@@ -362,14 +410,17 @@ aside {
     gap: 10px;
     width: 100%;
     padding: 10px;
+
     span {
       color: $white;
+
       svg {
         path {
           fill: red;
         }
       }
     }
+
     button {
       width: 100%;
       padding: 10px 20px;
@@ -380,15 +431,18 @@ aside {
       text-align: center;
       border-radius: 5px;
       transition: all 0.5s ease;
+
       i {
         font-size: 15px;
       }
+
       &:hover {
         background: rgb(112, 0, 0);
       }
     }
   }
 }
+
 //? ---------------> Sidebar End <---------------
 
 //? ---------------> Banner Start <---------------
@@ -396,6 +450,7 @@ aside {
   background: $primary-color;
   @include flex(flex-start, flex-end);
   padding: 0 20px 20px 20px;
+
   .banner-wrapper {
     padding: 20px;
     width: calc(100% - 250px);
@@ -406,20 +461,24 @@ aside {
     transition: all .5s ease;
     gap: 10px;
   }
+
   .description {
     width: 50%;
     color: $white;
+
     h1 {
       font-size: 65px;
       width: 100%;
       font-weight: 600;
     }
+
     span {
       @include flex(center);
       margin: 5px 0;
       gap: 10px;
       color: gray;
       font-size: 20px;
+
       p {
         margin: 0;
         background: rgba(255, 255, 255, 0.2);
@@ -430,6 +489,7 @@ aside {
         font-weight: 600;
       }
     }
+
     p {
       color: gray;
       font-size: 18px;
@@ -440,6 +500,7 @@ aside {
       text-overflow: ellipsis;
       margin-bottom: 20px;
     }
+
     a {
       background: darkred;
       color: $white;
@@ -450,21 +511,26 @@ aside {
       transition: all 0.5s ease;
       @include flex(center, center);
       max-width: 180px;
+
       svg {
         margin-right: 8px;
       }
+
       &:hover {
         background: rgb(112, 0, 0);
       }
     }
   }
+
   .carousel {
     width: 50%;
+
     .carousel-item {
       width: 200px;
       height: 300px;
       background: #444444 url(../images/video-bg-icon.png) no-repeat center/contain;
       border-radius: 10px;
+
       img {
         width: 200px;
         height: 300px;
@@ -475,12 +541,14 @@ aside {
     }
   }
 }
+
 //? ---------------> Banner End <---------------
 
 //? ---------------> Movie List Start <---------------
 .list {
   @include flex(flex-start, flex-end);
   width: 100%;
+
   .list-wrapper {
     position: relative;
     padding: 20px;
@@ -492,6 +560,7 @@ aside {
       font-size: 30px;
       font-weight: 600;
     }
+
     .next,
     .prev {
       position: absolute;
@@ -501,29 +570,37 @@ aside {
       transition: all 0.5s ease;
       opacity: 0.5;
       cursor: pointer;
+
       &:hover {
         opacity: 1;
       }
+
       path {
         fill: $white;
       }
     }
+
     .next {
       right: 20px;
     }
+
     .prev {
       left: 25px;
     }
+
     .movie-list {
       position: relative;
       overflow-x: auto;
       width: 100%;
       white-space: nowrap;
+
       &::-webkit-scrollbar {
         width: 0px;
         height: 0px;
       }
+
       scroll-snap-type: x mandatory;
+
       .movie {
         position: relative;
         display: inline-block;
@@ -545,10 +622,12 @@ aside {
           border-radius: 999px;
           display: none;
         }
+
         .favorite {
           top: 10px;
           right: 10px;
         }
+
         .basket {
           top: 55px;
           right: 10px;
@@ -557,13 +636,16 @@ aside {
         &:not(:last-child) {
           margin-right: 10px;
         }
+
         &:hover {
           width: 350px;
         }
+
         &:hover .movie-info {
           opacity: 0;
           pointer-events: none;
         }
+
         &:hover img {
           scale: 1.1;
         }
@@ -591,9 +673,11 @@ aside {
           position: relative;
           width: 100%;
           height: 210px;
+          background: #444444 url(../images/video-bg-icon.png) no-repeat center/contain;
           border-radius: 10px;
           overflow: hidden;
           transition: all 0.5s ease;
+
           .overlay {
             z-index: 1;
             width: 100%;
@@ -609,10 +693,12 @@ aside {
             pointer-events: none;
             padding: 20px;
             transition: all 0.5s ease;
+
             .left {
               @include flex;
               flex-direction: column;
               gap: 5px;
+
               .name {
                 display: inline-block;
                 max-width: 100%;
@@ -626,22 +712,26 @@ aside {
                 transform: translateY(-50px);
                 opacity: 0;
               }
+
               .imdb {
                 @include flex(center);
                 gap: 5px;
                 transition: all 0.5s ease;
                 transform: translateY(-40px);
                 opacity: 0;
+
                 span {
                   font-size: 15px;
                   font-weight: 500;
                 }
+
                 svg {
                   path {
                     fill: $yellow;
                   }
                 }
               }
+
               .year {
                 transition: all 0.5s ease;
                 background: $icon-bg;
@@ -654,9 +744,11 @@ aside {
                 opacity: 0;
               }
             }
+
             .right {
               @include flex(center);
               gap: 10px;
+
               .favorite,
               .basket {
                 @include flex(center, center);
@@ -666,6 +758,7 @@ aside {
                 background: $white;
                 scale: 0;
                 transition: all 0.5s ease;
+
                 svg {
                   path {
                     fill: $black;
@@ -674,6 +767,7 @@ aside {
               }
             }
           }
+
           img {
             width: 100%;
             height: 210px;
@@ -682,9 +776,11 @@ aside {
             transition: all 0.5s ease;
           }
         }
+
         .movie-info {
           padding: 5px;
           transition: all 0.5s ease;
+
           span {
             display: inline-block;
             max-width: 100%;
@@ -695,15 +791,19 @@ aside {
             text-overflow: ellipsis;
             white-space: nowrap;
           }
+
           .short-info {
             @include flex(center, space-between);
+
             .imdb {
               @include flex(center);
               gap: 5px;
+
               span {
                 font-size: 15px;
                 font-weight: 500;
               }
+
               svg {
                 path {
                   fill: $yellow;
@@ -716,12 +816,14 @@ aside {
     }
   }
 }
+
 //? ---------------> Movie List End <---------------
 
 @keyframes loading {
   from {
     transform: translateY(-50%) rotate(0deg);
   }
+
   to {
     transform: translateY(-50%) rotate(1turn);
   }
@@ -732,13 +834,12 @@ aside {
     .banner-wrapper {
       flex-direction: column;
       gap: 30px;
-      background: linear-gradient(
-          to right,
+      background: linear-gradient(to right,
           rgba(0, 0, 0, 0.8),
-          rgba(0, 0, 0, 0.8)
-        ),
+          rgba(0, 0, 0, 0.8)),
         url(../images/bg.webp) no-repeat center/cover;
     }
+
     .description,
     .carousel {
       width: 100%;
@@ -749,19 +850,23 @@ aside {
 @media (max-width: 768px) {
   nav {
     padding: 10px 15px;
+
     .logo {
       img {
         width: 30px;
         height: 30px;
       }
+
       span {
         font-size: 20px;
       }
     }
+
     .actions {
       .menu-icon {
         display: block;
       }
+
       .search-icon {
         @include flex(center, center);
       }
@@ -776,8 +881,10 @@ aside {
         height: 100%;
         padding: 0 10px;
         display: none;
+
         &.active {
           display: flex;
+
           .close-icon {
             @include flex(center, center);
           }
@@ -791,6 +898,7 @@ aside {
     position: fixed;
     top: 55px;
     left: -500px;
+
     &.active {
       left: 0;
     }
@@ -798,10 +906,13 @@ aside {
 
   .banner {
     width: 100vw;
+
     .banner-wrapper {
       width: 100%;
     }
+
     min-height: calc(100vh - 55px);
+
     .description {
       h1 {
         font-size: 40px;
@@ -812,25 +923,32 @@ aside {
   .list {
     .list-wrapper {
       width: 100%;
+
       .next,
       .prev {
         display: none;
       }
+
       .movie-list {
         .movie {
+
           .basket,
           .favorite {
             display: flex;
           }
+
           &:hover {
             width: 150px;
           }
+
           &:hover img {
             scale: 1;
           }
+
           &:hover .movie-info {
             opacity: 1;
           }
+
           .movie-image {
             .overlay {
               display: none;

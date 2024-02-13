@@ -1727,6 +1727,7 @@ aside footer button:hover {
   position: relative;
   width: 100%;
   height: 210px;
+  background: #444444 url(../images/video-bg-icon.png) no-repeat center/contain;
   border-radius: 10px;
   overflow: hidden;
   transition: all 0.5s ease;
