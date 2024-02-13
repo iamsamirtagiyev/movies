@@ -522,6 +522,7 @@ form p a {
 }
 .poster-wrapper .poster .poster-desc .genre {
   color: gray;
+  white-space: nowrap;
 }
 .poster-wrapper .poster .poster-desc h1 {
   color: #fff;
@@ -610,6 +611,12 @@ form p a {
   background-position: center;
   border-radius: 10px;
   display: inline-block;
+}
+.poster-wrapper .trailers .trailer-box .trailer iframe {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
 }
 .poster-wrapper .trailers .trailer-box .trailer:not(:last-child) {
   margin-right: 10px;
@@ -1760,7 +1767,7 @@ aside footer button:hover {
 }
 .list .list-wrapper .movie-list .movie .movie-image .overlay .left .name {
   display: inline-block;
-  max-width: 100%;
+  max-width: 300px;
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -1818,9 +1825,35 @@ aside footer button:hover {
   scale: 0;
   transition: all 0.5s ease;
 }
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite:hover,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket:hover {
+  background: red;
+}
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite:hover svg path,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket:hover svg path {
+  fill: #fff;
+}
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite svg,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket svg {
+  pointer-events: none;
+}
 .list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite svg path,
 .list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket svg path {
+  transition: all 0.5s ease;
   fill: #000;
+}
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite.fav:hover,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket.fav:hover {
+  background: #fff;
+}
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite.fav svg,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket.fav svg {
+  pointer-events: none;
+}
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .favorite.fav svg path,
+.list .list-wrapper .movie-list .movie .movie-image .overlay .right .basket.fav svg path {
+  transition: all 0.5s ease;
+  fill: red;
 }
 .list .list-wrapper .movie-list .movie .movie-image img {
   width: 100%;

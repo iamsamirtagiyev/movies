@@ -701,7 +701,7 @@ aside {
 
               .name {
                 display: inline-block;
-                max-width: 100%;
+                max-width: 300px;
                 color: $white;
                 font-size: 18px;
                 font-weight: 600;
@@ -758,10 +758,30 @@ aside {
                 background: $white;
                 scale: 0;
                 transition: all 0.5s ease;
+                &:hover{
+                  background: red;
+                }
+                &:hover svg path{
+                  fill: $white;
+                }
 
                 svg {
+                  pointer-events: none;
                   path {
+                    transition: all 0.5s ease;
                     fill: $black;
+                  }
+                }
+                &.fav{
+                  &:hover{
+                    background: $white;
+                  }
+                  svg {
+                    pointer-events: none;
+                    path {
+                      transition: all 0.5s ease;
+                      fill: red;
+                    }
                   }
                 }
               }
