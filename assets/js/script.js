@@ -72,7 +72,7 @@ const toDetails = (id) => {
 
 //!---------------------> Fetch <---------------------
 
-fetch(`${baseUrl}upcoming?api_key=${apiKey}&language=en-US&page=1`)
+fetch(`${baseUrl}upcoming?api_key=${apiKey}&language=en-US&page=2`)
 .then(response => response.json())
 .then(data => {
     data.results.forEach(movie => {

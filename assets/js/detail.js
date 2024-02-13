@@ -3,6 +3,7 @@
 const addBtn = document.querySelector('.add-btn')
 const comment = document.querySelector('.add-comment textarea')
 const poster = document.querySelector('.poster')
+const comments = document.querySelector('.comments')
 
 //!---------------------> Variables <---------------------
 
@@ -18,6 +19,9 @@ axios.get(`${baseUrl}/movie/${id}?api_key=${apiKey}&language=en-US`).then(respon
   response.data.genres.forEach(gnr => {
     return genre.push(gnr.name)
   });
+  document.title = response.data.title
+  poster.style.backgroundImage = `url(https://image.tmdb.org/t/p/w1280${response.data.backdrop_path})`
+
   poster.innerHTML = `
   
   <div class="poster-image">
@@ -62,6 +66,24 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
   })
 })
 
+axios.get('http://localhost:3000/comments').then(response => {
+  response.data.forEach(data => {
+    if(data.movie_id == id){
+      comments.innerHTML += `
+    <div class="comment">
+    <div class="profile-img">
+        <img src="${data.image}" alt="profile">
+    </div>
+    <div class="comment-detail">
+        <div class="username">@${data.username}</div>
+        <p>${data.comment}</p>
+    </div>
+</div>
+    `
+    }
+  })
+})
+
 //!---------------------> Functions <---------------------
 
 const showToast = (type, message) => {
@@ -84,6 +106,29 @@ const addComment = () => {
   }
   else if (comment.value == '') {
     showToast('error', 'Write a comment')
+  }
+  else{
+    let obj = {
+      movie_id: id,
+      username: JSON.parse(localStorage.getItem('user')).username,
+      image: JSON.parse(localStorage.getItem('user')).image,
+      comment: comment.value,
+      status: "default"
+    }
+    axios.post('http://localhost:3000/comments', obj).then(() => {
+      comments.innerHTML += `
+      <div class="comment">
+        <div class="profile-img">
+          <img src="${obj.image}" alt="profile">
+        </div>
+        <div class="comment-detail">
+            <div class="username">@${obj.username}</div>
+            <p>${obj.comment}</p>
+        </div>
+      </div>
+      `
+    })
+    comment.value = ''
   }
 }
 
