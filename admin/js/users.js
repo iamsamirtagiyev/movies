@@ -1,6 +1,6 @@
 const tbody = document.querySelector('tbody')
 
-axios.get(`http://localhost:3000/user`).then(response => {
+axios.get(`https://movies-gnnl.onrender.com/users`).then(response => {
     response.data.forEach(user => {
         tbody.innerHTML += `
         <tr>
