@@ -113,7 +113,7 @@ const edit = (e) => {
             username: usernameInput.value,
             email: emailInput.value
         }
-        axios.patch(`http://localhost:3000/user/${userId}`, obj).then((response) => {
+        axios.patch(`https://movies-gnnl.onrender.com/users/${userId}`, obj).then((response) => {
             localStorage.removeItem('user')
             localStorage.setItem('user', JSON.stringify(response.data))
             window.location = './account.html'
