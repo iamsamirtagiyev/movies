@@ -76,7 +76,7 @@ const openModal = () => {
     modal.classList.add('active')
     let userId = JSON.parse(localStorage.getItem('user')).id
 
-    axios.get(`http://localhost:3000/user/${userId}`).then(response => {
+    axios.get(`https://movies-gnnl.onrender.com/users/${userId}`).then(response => {
         const { image, username, email } = response.data
 
         imageLabel.src = image
