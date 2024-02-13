@@ -10,6 +10,7 @@ const comments = document.querySelector('.comments')
 let id = new URLSearchParams(window.location.search).get('id')
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
+let url = 'https://movies-gnnl.onrender.com/'
 const genre = []
 
 //!---------------------> Axios <---------------------
@@ -66,7 +67,7 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
   })
 })
 
-axios.get('http://localhost:3000/comments').then(response => {
+axios.get(`${url}comments`).then(response => {
   response.data.forEach(data => {
     if(data.movie_id == id){
       comments.innerHTML += `
@@ -115,7 +116,7 @@ const addComment = () => {
       comment: comment.value,
       status: "default"
     }
-    axios.post('http://localhost:3000/comments', obj).then(() => {
+    axios.post(`${url}comments`, obj).then(() => {
       comments.innerHTML += `
       <div class="comment">
         <div class="profile-img">

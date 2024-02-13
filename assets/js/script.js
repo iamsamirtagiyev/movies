@@ -13,6 +13,7 @@ const topRatedMovies = document.querySelector('.top-rated')
 
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/movie/'
+let url = 'https://movies-gnnl.onrender.com/'
 const fav = []
 
 //!---------------------> Functions <---------------------
