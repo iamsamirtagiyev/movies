@@ -402,13 +402,8 @@ aside {
     min-height: calc(100vh - 80px);
     border-radius: 10px;
     transition: all 0.5s ease;
-    background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.8),
-        rgba(0, 0, 0, 0.3)
-      ),
-      url(../images/bg.webp) no-repeat center/cover;
     @include flex(center, center);
+    transition: all .5s ease;
     gap: 10px;
   }
   .description {
@@ -468,6 +463,8 @@ aside {
     .carousel-item {
       width: 200px;
       height: 300px;
+      background: #444444 url(../images/video-bg-icon.png) no-repeat center/contain;
+      border-radius: 10px;
       img {
         width: 200px;
         height: 300px;

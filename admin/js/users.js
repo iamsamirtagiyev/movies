@@ -17,8 +17,10 @@ axios.get(`http://localhost:3000/user`).then(response => {
 })
 
 const deleteUser = (id) => {
-    axios.delete(`http://localhost:3000/user/${id}`).then(() => {
-        localStorage.removeItem('user')
-        window.location.reload()
-    })
+    if (confirm('Do you want to delete this user?')) {
+        axios.delete(`http://localhost:3000/user/${id}`).then(() => {
+            localStorage.removeItem('user')
+            window.location.reload()
+        })
+    }
 }
