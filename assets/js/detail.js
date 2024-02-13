@@ -54,7 +54,7 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
       document.querySelector('.trailer-box').innerHTML += `
       
       <div class="trailer" style="background-image: url(./assets/images/video-bg-icon.png);">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ZaTUatY-UoU?si=Jm2SPpSyYCoS4xhl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/${video.key}?si=Jm2SPpSyYCoS4xhl" title="${video.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
       
       `
