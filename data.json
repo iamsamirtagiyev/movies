@@ -21,7 +21,16 @@
     }
   ],
   "favorites": [
-    
+    {
+      "user_id": 1,
+      "movie_id": 933131,
+      "id": 1
+    },
+    {
+      "user_id": 1,
+      "movie_id": 1214314,
+      "id": 2
+    }
   ],
   "history": []
 }

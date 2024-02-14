@@ -71,7 +71,8 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
 axios.get(`${url}comments`).then(response => {
   if(response.data.length > 0){
     response.data.forEach(com => {
-      comments.innerHTML += `
+      if(com.movie_id == id){
+        comments.innerHTML += `
       <div class="comment">
         <div class="profile-img">
           <img src="${com.user_image}" alt="profile">
@@ -82,6 +83,7 @@ axios.get(`${url}comments`).then(response => {
         </div>
       </div>
       `
+      }
     })
   }
 })

@@ -77,8 +77,8 @@ fetch(`${baseUrl}upcoming?api_key=${apiKey}&language=en-US&page=2`)
 .then(response => response.json())
 .then(data => {
     data.results.forEach(movie => {
-        const { backdrop_path, title, release_date, vote_average, id } = movie
-        showMovies(uncomingMovies, backdrop_path, title, release_date, vote_average, id)
+        const { poster_path, title, release_date, vote_average, id } = movie
+        showMovies(uncomingMovies, poster_path, title, release_date, vote_average, id)
     })
 })
 
@@ -86,8 +86,8 @@ fetch(`${baseUrl}now_playing?api_key=${apiKey}&language=en-US&page=2`)
 .then(response => response.json())
 .then(data => {
     data.results.forEach(movie => {
-        const { backdrop_path, title, release_date, vote_average, id } = movie
-        showMovies(trendingMovies, backdrop_path, title, release_date, vote_average, id)
+        const { poster_path, title, release_date, vote_average, id } = movie
+        showMovies(trendingMovies, poster_path, title, release_date, vote_average, id)
     })
 })
 
@@ -95,8 +95,8 @@ fetch(`${baseUrl}top_rated?api_key=${apiKey}&language=en-US&page=1`)
 .then(response => response.json())
 .then(data => {
     data.results.forEach(movie => {
-        const { backdrop_path, title, release_date, vote_average, id } = movie
-        showMovies(topRatedMovies, backdrop_path, title, release_date, vote_average, id)
+        const { poster_path, title, release_date, vote_average, id } = movie
+        showMovies(topRatedMovies, poster_path, title, release_date, vote_average, id)
     })
 })
 

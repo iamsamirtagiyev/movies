@@ -21,7 +21,13 @@ const saveBtn = modal.querySelector('button')
 
 //!---------------->Variables<----------------
 
-let url = 'http://localhost:3000/users/'
+let url = 'http://localhost:3000/'
+const apiKey = '42307d83029282167962d48513375d5e'
+const baseUrl = 'https://api.themoviedb.org/3/'
+
+//!---------------->Axios<----------------
+
+
 
 //!---------------->Functions<----------------
 
@@ -103,7 +109,7 @@ const edit = (e) => {
             email: emailInput.value
         }
         console.log(obj);
-        axios.patch(`${url}${userId}`, obj).then((response) => {
+        axios.patch(`${url}users${userId}`, obj).then((response) => {
             localStorage.removeItem('user')
             localStorage.setItem('user', JSON.stringify(response.data))
             window.location = './account.html'
