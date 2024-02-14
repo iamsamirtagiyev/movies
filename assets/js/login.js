@@ -10,7 +10,7 @@ const eyeIcon = document.querySelectorAll('.eye')
 
 let isUser = false
 let isPassword = false
-let url = 'https://movies-gnnl.onrender.com/'
+let url = 'http://localhost:3000/users/'
 
 //!----------------------> Functions <----------------------
 
@@ -81,7 +81,7 @@ const loginUser = (e) => {
         window.location = './admin/admin.html'
     }
 
-    axios.get(`${url}users`).then(response => {
+    axios.get(url).then(response => {
         const isUser = response.data.find(user => {
             if(user.username == usernameOrEmail.value || user.email == usernameOrEmail.value){
                 return user

@@ -13,7 +13,7 @@ const topRatedMovies = document.querySelector('.top-rated')
 
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/movie/'
-let url = 'https://movies-gnnl.onrender.com/'
+let url = 'http://localhost:3000/users/'
 const fav = []
 
 //!---------------------> Functions <---------------------
@@ -91,7 +91,7 @@ fetch(`${baseUrl}now_playing?api_key=${apiKey}&language=en-US&page=2`)
     })
 })
 
-fetch(`${baseUrl}top_rated?api_key=${apiKey}&language=en-US&page=2`)
+fetch(`${baseUrl}top_rated?api_key=${apiKey}&language=en-US&page=1`)
 .then(response => response.json())
 .then(data => {
     data.results.forEach(movie => {

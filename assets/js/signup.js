@@ -18,7 +18,7 @@ let isLastName = false;
 let isUsername = false;
 let isEmail = false;
 let isPassword = false;
-let url = 'https://movies-gnnl.onrender.com/'
+let url = 'http://localhost:3000/users/'
 
 //!----------------------> Functions <----------------------
 
@@ -129,14 +129,14 @@ const showHide = (e) => {
 const createUser = (e) => {
   e.preventDefault();
 
-  axios.get(`${url}users`).then((response) => {
+  axios.get(url).then((response) => {
     const isUser = response.data.find((user) => {
       if (user.email == email.value || user.username == username.value) {
         return user;
       }
     });
 
-    if(!isUser){
+    if(isUser){
         showToast("error", "Registered user. please login");
     }
   });
@@ -164,8 +164,8 @@ const createUser = (e) => {
       password: password.value,
       image: "./assets/images/user.png",
     };
-    axios.post(`${url}users`, user).then((response) => {
-      localStorage.setItem("user", JSON.stringify(user));
+    axios.post(url, user).then((response) => {
+      localStorage.setItem("user", JSON.stringify(response.data));
       window.location = "./account.html";
     });
   }

@@ -8,14 +8,14 @@ $(document).ready(() => {
 
   $.get(`https://api.themoviedb.org/3/movie/popular?api_key=42307d83029282167962d48513375d5e&language=en-US`, (data) => {
     $.each(data.results, (index, value) => {
-      carouselItems[index].querySelector('img').src = `https://image.tmdb.org/t/p/w1280${value.backdrop_path}`
+      carouselItems[index].querySelector('img').src = `https://image.tmdb.org/t/p/w1280${value.poster}`
     })
 
     bannerWrapper.style.background = `linear-gradient(
       to right,
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
-    ),url(https://image.tmdb.org/t/p/w1280${data.results[0].backdrop_path}) no-repeat center/cover`
+    ),url(https://image.tmdb.org/t/p/w1280${data.results[0].poster_path}) no-repeat center/cover`
 
     $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e&language=en-US`, (genre => {
 
@@ -35,11 +35,11 @@ $(document).ready(() => {
         }
       })
       // console.log(data.results[0]);
-
+      let imdb = `${data.results[0].vote_average}`
       description.innerHTML = `
     
     <h1>${data.results[0].title}</h1>
-    <span>${data.results[0].release_date} <p>${data.results[0].vote_average}</p></span>
+    <span>${data.results[0].release_date.split('-')[0]} <p>${imdb.slice(0, 3)}</p></span>
     <span>${gnr1.name}, ${gnr2.name}, ${gnr3.name}</span>
     <p>${data.results[0].overview}</p>
     <a href="detail.html?id=${data.results[0].id}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">
@@ -72,10 +72,12 @@ $(document).ready(() => {
             }
           })
 
+          let imdb = `${data.results[index].vote_average}`
+
           description.innerHTML = `
     
     <h1>${data.results[index].title}</h1>
-    <span>${data.results[index].release_date} <p>${data.results[index].vote_average}</p></span>
+    <span>${data.results[index].release_date.split('-')[0]} <p>${imdb.slice(0, 3)}</p></span>
     <span>${gnr1.name}, ${gnr2.name}</span>
     <p>${data.results[index].overview}</p>
     <a href="detail.html?id=${data.results[index].id}" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-play-circle" viewBox="0 0 16 16">

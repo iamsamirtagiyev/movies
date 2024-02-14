@@ -1,3 +1,4 @@
+
 .movies {
   width: 100%;
   @include flex(flex-start, flex-end);
@@ -29,12 +30,12 @@
 
       &::after {
         background: linear-gradient(90deg, $primary-color, transparent);
-        left: 25px;
+        left: 20px;
       }
 
       &::before {
         background: linear-gradient(90deg, transparent, $primary-color);
-        right: 20px;
+        right: 15px;
       }
 
       i {
@@ -95,7 +96,7 @@
           }
 
           &:not(:last-child) {
-            margin-right: 2px;
+            margin-right: 5px;
           }
         }
       }
@@ -117,6 +118,7 @@
           width: 100%;
           height: 280px;
           border-radius: 10px;
+          background: #444444, url(../../images/video-bg-icon.png) no-repeat center/contain;
 
           .add,
           .favorite,
@@ -221,7 +223,41 @@
         }
       }
     }
+    .load-more{
+      width: 100%;
+      @include flex(center, center);
+      padding: 50px 0 20px 0;
+      button{
+        @include flex(center, center);
+        gap: 10px;
+        font-size: 18px;
+        color: $white;
+        padding: 10px 25px;
+        border-radius: 5px;
+        background: darkred;
+        font-weight: 500;
+        transition: all .5s ease;
+        &:hover{
+          background: rgb(105, 2, 2);
+        }
+        .loader{
+          border: solid 3px $white;
+          border-left-color: transparent;
+          width: 20px;
+          height: 20px;
+          border-radius: 999px;
+          transition: all .5s ease;
+          animation: load 1s linear infinite;
+          display: none;
+        }
+      }
+    }
   }
+}
+
+@keyframes load {
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
 }
 
 @media (max-width: 992px) {

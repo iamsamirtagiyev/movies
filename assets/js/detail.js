@@ -8,10 +8,12 @@ const comments = document.querySelector('.comments')
 //!---------------------> Variables <---------------------
 
 let id = new URLSearchParams(window.location.search).get('id')
+// let userId = JSON.parse(localStorage.getItem('user')).id
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
-let url = 'https://movies-gnnl.onrender.com/'
+let url = 'http://localhost:3000/users/'
 const genre = []
+const commentArr = []
 
 //!---------------------> Axios <---------------------
 
@@ -26,7 +28,7 @@ axios.get(`${baseUrl}/movie/${id}?api_key=${apiKey}&language=en-US`).then(respon
   poster.innerHTML = `
   
   <div class="poster-image">
-  <img src="https://image.tmdb.org/t/p/w1280${response.data.backdrop_path}" alt="poster">
+  <img src="https://image.tmdb.org/t/p/w1280${response.data.poster_path}" alt="poster">
 </div>
 <div class="poster-desc">
   <h1>${response.data.title}</h1>
@@ -67,23 +69,44 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
   })
 })
 
-axios.get(`${url}comments`).then(response => {
-  response.data.forEach(data => {
-    if(data.movie_id == id){
-      comments.innerHTML += `
-    <div class="comment">
-    <div class="profile-img">
-        <img src="${data.image}" alt="profile">
-    </div>
-    <div class="comment-detail">
-        <div class="username">@${data.username}</div>
-        <p>${data.comment}</p>
-    </div>
-</div>
-    `
-    }
-  })
-})
+// if(localStorage.getItem('user') != null){
+//   axios.get(url + userId).then(response => {
+//     console.log(response.data);
+
+//     if(response.data.comments.lenght > 0){
+//       response.data.comments.forEach(com => {
+//         if(com.movie_id == id){
+//           comments.innerHTML += `
+//             <div class="comment">
+//             <div class="profile-img">
+//                 <img src="${data.image}" alt="profile">
+//             </div>
+//             <div class="comment-detail">
+//                 <div class="username">@${data.username}</div>
+//                 <p>${data.comment}</p>
+//             </div>
+//         </div>`
+//         }
+//       })
+//       return commentArr = response.data.comments
+//     }
+//     response.data.forEach(data => {
+//       if(data.movie_id == id){
+//         comments.innerHTML += `
+//       <div class="comment">
+//       <div class="profile-img">
+//           <img src="${data.image}" alt="profile">
+//       </div>
+//       <div class="comment-detail">
+//           <div class="username">@${data.username}</div>
+//           <p>${data.comment}</p>
+//       </div>
+//   </div>
+//       `
+//       }
+//     })
+//   })
+// }
 
 //!---------------------> Functions <---------------------
 
@@ -109,27 +132,31 @@ const addComment = () => {
     showToast('error', 'Write a comment')
   }
   else{
-    let obj = {
-      movie_id: id,
-      username: JSON.parse(localStorage.getItem('user')).username,
-      image: JSON.parse(localStorage.getItem('user')).image,
-      comment: comment.value,
-      status: "default"
-    }
-    axios.post(`${url}comments`, obj).then(() => {
-      comments.innerHTML += `
-      <div class="comment">
-        <div class="profile-img">
-          <img src="${obj.image}" alt="profile">
-        </div>
-        <div class="comment-detail">
-            <div class="username">@${obj.username}</div>
-            <p>${obj.comment}</p>
-        </div>
-      </div>
-      `
-    })
-    comment.value = ''
+    // let obj = {
+    //   movie_id: id,
+    //   comment: comment.value,
+    //   status: "default"
+    // }
+
+    // commentArr.push(obj)
+    // console.log(commentArr);
+
+    // axios.patch(url, {
+    //    comments: commentArr
+    // }).then(() => {
+    //   comments.innerHTML += `
+    //   <div class="comment">
+    //     <div class="profile-img">
+    //       <img src="${obj.image}" alt="profile">
+    //     </div>
+    //     <div class="comment-detail">
+    //         <div class="username">@${obj.username}</div>
+    //         <p>${obj.comment}</p>
+    //     </div>
+    //   </div>
+    //   `
+    // })
+    // comment.value = ''
   }
 }
 

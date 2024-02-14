@@ -73,11 +73,11 @@ ul {
 }
 .movies .movie-wrapper .genre::after {
   background: linear-gradient(90deg, #0f1115, transparent);
-  left: 25px;
+  left: 20px;
 }
 .movies .movie-wrapper .genre::before {
   background: linear-gradient(90deg, transparent, #0f1115);
-  right: 20px;
+  right: 15px;
 }
 .movies .movie-wrapper .genre i {
   z-index: 2;
@@ -130,7 +130,7 @@ ul {
   background: #585858;
 }
 .movies .movie-wrapper .genre .genre-slider span:not(:last-child) {
-  margin-right: 2px;
+  margin-right: 5px;
 }
 .movies .movie-wrapper .movie-list {
   padding-top: 30px;
@@ -150,6 +150,7 @@ ul {
   width: 100%;
   height: 280px;
   border-radius: 10px;
+  background: #444444, url(../../images/video-bg-icon.png) no-repeat center/contain;
 }
 .movies .movie-wrapper .movie-list .movie-item .image .add,
 .movies .movie-wrapper .movie-list .movie-item .image .favorite,
@@ -246,7 +247,48 @@ ul {
   border-radius: 5px;
   font-size: 15px;
 }
+.movies .movie-wrapper .load-more {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 0 20px 0;
+}
+.movies .movie-wrapper .load-more button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  color: #fff;
+  padding: 10px 25px;
+  border-radius: 5px;
+  background: darkred;
+  font-weight: 500;
+  transition: all 0.5s ease;
+}
+.movies .movie-wrapper .load-more button:hover {
+  background: rgb(105, 2, 2);
+}
+.movies .movie-wrapper .load-more button .loader {
+  border: solid 3px #fff;
+  border-left-color: transparent;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  transition: all 0.5s ease;
+  animation: load 1s linear infinite;
+  display: none;
+}
 
+@keyframes load {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 992px) {
   .movies .movie-wrapper .genre .genre-slider {
     width: 90%;
@@ -940,7 +982,7 @@ form p a {
 .account-wrapper .account .watch-wrapper .watchlist {
   width: 100%;
   margin: auto;
-  overflow-x: auto;
+  overflow: hidden;
   white-space: nowrap;
   scroll-snap-type: x mandatory;
   padding: 10px;
@@ -958,7 +1000,7 @@ form p a {
 .account-wrapper .account .watch-wrapper .watchlist .favorites-container,
 .account-wrapper .account .watch-wrapper .watchlist .history-container {
   margin: auto;
-  width: 101%;
+  width: 100%;
   display: inline-block;
   scroll-snap-align: start;
 }
