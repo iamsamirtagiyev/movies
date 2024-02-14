@@ -8,10 +8,9 @@ const comments = document.querySelector('.comments')
 //!---------------------> Variables <---------------------
 
 let id = new URLSearchParams(window.location.search).get('id')
-// let userId = JSON.parse(localStorage.getItem('user')).id
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
-let url = 'http://localhost:3000/users/'
+let url = 'http://localhost:3000/'
 const genre = []
 const commentArr = []
 
@@ -69,44 +68,23 @@ axios.get(`${baseUrl}movie/${id}/videos?api_key=${apiKey}`).then(response => {
   })
 })
 
-// if(localStorage.getItem('user') != null){
-//   axios.get(url + userId).then(response => {
-//     console.log(response.data);
-
-//     if(response.data.comments.lenght > 0){
-//       response.data.comments.forEach(com => {
-//         if(com.movie_id == id){
-//           comments.innerHTML += `
-//             <div class="comment">
-//             <div class="profile-img">
-//                 <img src="${data.image}" alt="profile">
-//             </div>
-//             <div class="comment-detail">
-//                 <div class="username">@${data.username}</div>
-//                 <p>${data.comment}</p>
-//             </div>
-//         </div>`
-//         }
-//       })
-//       return commentArr = response.data.comments
-//     }
-//     response.data.forEach(data => {
-//       if(data.movie_id == id){
-//         comments.innerHTML += `
-//       <div class="comment">
-//       <div class="profile-img">
-//           <img src="${data.image}" alt="profile">
-//       </div>
-//       <div class="comment-detail">
-//           <div class="username">@${data.username}</div>
-//           <p>${data.comment}</p>
-//       </div>
-//   </div>
-//       `
-//       }
-//     })
-//   })
-// }
+axios.get(`${url}comments`).then(response => {
+  if(response.data.length > 0){
+    response.data.forEach(com => {
+      comments.innerHTML += `
+      <div class="comment">
+        <div class="profile-img">
+          <img src="${com.user_image}" alt="profile">
+        </div>
+        <div class="comment-detail">
+            <div class="username">@${com.user_name}</div>
+            <p>${com.comment}</p>
+        </div>
+      </div>
+      `
+    })
+  }
+})
 
 //!---------------------> Functions <---------------------
 
@@ -132,31 +110,29 @@ const addComment = () => {
     showToast('error', 'Write a comment')
   }
   else{
-    // let obj = {
-    //   movie_id: id,
-    //   comment: comment.value,
-    //   status: "default"
-    // }
+    let obj = {
+      user_id: JSON.parse(localStorage.getItem('user')).id,
+      user_image: JSON.parse(localStorage.getItem('user')).image,
+      user_name: JSON.parse(localStorage.getItem('user')).username,
+      movie_id: id,
+      comment: comment.value,
+      status: "default"
+    }
 
-    // commentArr.push(obj)
-    // console.log(commentArr);
-
-    // axios.patch(url, {
-    //    comments: commentArr
-    // }).then(() => {
-    //   comments.innerHTML += `
-    //   <div class="comment">
-    //     <div class="profile-img">
-    //       <img src="${obj.image}" alt="profile">
-    //     </div>
-    //     <div class="comment-detail">
-    //         <div class="username">@${obj.username}</div>
-    //         <p>${obj.comment}</p>
-    //     </div>
-    //   </div>
-    //   `
-    // })
-    // comment.value = ''
+    axios.post(`${url}comments`, obj).then(() => {
+      comments.innerHTML += `
+      <div class="comment">
+        <div class="profile-img">
+          <img src="${JSON.parse(localStorage.getItem('user')).image}" alt="profile">
+        </div>
+        <div class="comment-detail">
+            <div class="username">@${JSON.parse(localStorage.getItem('user')).username}</div>
+            <p>${obj.comment}</p>
+        </div>
+      </div>
+      `
+    })
+    comment.value = ''
   }
 }
 

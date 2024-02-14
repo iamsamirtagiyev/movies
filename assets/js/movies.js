@@ -11,6 +11,7 @@ const loader = document.querySelector('.loader')
 
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
+const url = 'http://localhost:3000/'
 let page = 1
 
 //!---------------------> Fetch <---------------------
@@ -23,7 +24,9 @@ fetch(`${baseUrl}/genre/movie/list?api_key=${apiKey}`).then(response => response
 //!---------------------> Functions <---------------------
 
 const toDetails = (id) => {
-    window.location = `./detail.html?id=${id}`
+    if (!event.target.classList.contains('favorite')) {
+        window.location = `./detail.html?id=${id}`
+    }
 }
 
 const getMovies = (id) => {
@@ -35,11 +38,11 @@ const showMovies = (page) => {
     fetch(`${baseUrl}discover/movie?api_key=${apiKey}&page=${page}`).then(response => response.json()).then(data => {
         data.results.forEach(res => {
             let imdbScore = `${res.vote_average}`
-            movieList.innerHTML  += `
+            movieList.innerHTML += `
             <div class="movie-item" onclick="toDetails(${res.id})">
             <div class="image" title=${res.title}>
                 <img src="https://image.tmdb.org/t/p/w1280${res.poster_path}" alt=${res.title}>
-                <div class="favorite" title="favorite">
+                <div class="favorite" title="favorite" onclick=addFavorite(${res.id})>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                       </svg>
@@ -62,6 +65,28 @@ const showMovies = (page) => {
             loader.style.display = 'none'
         })
     })
+}
+
+const addFavorite = (id) => {
+    if (localStorage.getItem('user') == null) {
+        window.location = './signup.html'
+    }
+    else {
+        let icon = event.target
+
+        if (icon.classList.contains('active')) {
+            icon.classList.remove('active')
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+          </svg>`
+        }
+        else {
+            icon.classList.add('active')
+            icon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+              </svg>`
+        }
+    }
 }
 
 showMovies(page)

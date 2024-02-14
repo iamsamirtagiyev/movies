@@ -30,7 +30,7 @@
 
       &::after {
         background: linear-gradient(90deg, $primary-color, transparent);
-        left: 20px;
+        left: 15px;
       }
 
       &::before {
@@ -131,6 +131,16 @@
             @include flex(center, center);
             transition: all 0.5s ease;
             transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            &:hover svg path{
+              fill: red;
+            }
+            &.active svg path{
+              fill: red;
+            }
+            svg{
+              pointer-events: none;
+              transition: all 0.5s ease;
+            }
           }
 
           .add {
@@ -146,11 +156,6 @@
           .favorite {
             right: 10px;
             bottom: 10px;
-
-            &.active {
-              right: 10px;
-              bottom: 60px;
-            }
           }
 
           .basket {

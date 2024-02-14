@@ -8,14 +8,14 @@ $(document).ready(() => {
 
   $.get(`https://api.themoviedb.org/3/movie/popular?api_key=42307d83029282167962d48513375d5e&language=en-US`, (data) => {
     $.each(data.results, (index, value) => {
-      carouselItems[index].querySelector('img').src = `https://image.tmdb.org/t/p/w1280${value.poster}`
+      carouselItems[index].querySelector('img').src = `https://image.tmdb.org/t/p/w1280${value.poster_path}`
     })
 
     bannerWrapper.style.background = `linear-gradient(
       to right,
       rgba(0, 0, 0, 0.9),
       rgba(0, 0, 0, 0.4)
-    ),url(https://image.tmdb.org/t/p/w1280${data.results[0].poster_path}) no-repeat center/cover`
+    ),url(https://image.tmdb.org/t/p/w1280${data.results[0].backdrop_path}) no-repeat center/cover`
 
     $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e&language=en-US`, (genre => {
 
@@ -53,12 +53,6 @@ $(document).ready(() => {
 
     $.each(carouselItems, (index, item) => {
       item.onclick = () => {
-        bannerWrapper.style.background = `linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.9),
-      rgba(0, 0, 0, 0.4)
-      ),url(${item.querySelector('img').src}) no-repeat center/cover`
-
         $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e&language=en-US`, (genre => {
 
           gnr1 = genre.genres.find(gen => {
@@ -73,6 +67,12 @@ $(document).ready(() => {
           })
 
           let imdb = `${data.results[index].vote_average}`
+
+          bannerWrapper.style.background = `linear-gradient(
+            to right,
+            rgba(0, 0, 0, 0.9),
+            rgba(0, 0, 0, 0.4)
+            ),url(https://image.tmdb.org/t/p/w1280${data.results[index].backdrop_path}) no-repeat center/cover`
 
           description.innerHTML = `
     

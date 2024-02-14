@@ -73,7 +73,7 @@ ul {
 }
 .movies .movie-wrapper .genre::after {
   background: linear-gradient(90deg, #0f1115, transparent);
-  left: 20px;
+  left: 15px;
 }
 .movies .movie-wrapper .genre::before {
   background: linear-gradient(90deg, transparent, #0f1115);
@@ -166,6 +166,22 @@ ul {
   transition: all 0.5s ease;
   transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
 }
+.movies .movie-wrapper .movie-list .movie-item .image .add:hover svg path,
+.movies .movie-wrapper .movie-list .movie-item .image .favorite:hover svg path,
+.movies .movie-wrapper .movie-list .movie-item .image .basket:hover svg path {
+  fill: red;
+}
+.movies .movie-wrapper .movie-list .movie-item .image .add.active svg path,
+.movies .movie-wrapper .movie-list .movie-item .image .favorite.active svg path,
+.movies .movie-wrapper .movie-list .movie-item .image .basket.active svg path {
+  fill: red;
+}
+.movies .movie-wrapper .movie-list .movie-item .image .add svg,
+.movies .movie-wrapper .movie-list .movie-item .image .favorite svg,
+.movies .movie-wrapper .movie-list .movie-item .image .basket svg {
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
 .movies .movie-wrapper .movie-list .movie-item .image .add {
   z-index: 1;
   bottom: 10px;
@@ -177,10 +193,6 @@ ul {
 .movies .movie-wrapper .movie-list .movie-item .image .favorite {
   right: 10px;
   bottom: 10px;
-}
-.movies .movie-wrapper .movie-list .movie-item .image .favorite.active {
-  right: 10px;
-  bottom: 60px;
 }
 .movies .movie-wrapper .movie-list .movie-item .image .basket {
   right: 10px;
