@@ -16,11 +16,13 @@ const searchModal = document.querySelector('.search-modal')
 const searchInput = document.querySelector('.search input')
 const searchTitle = searchModal.querySelector('.search-title')
 const resultWrapper = searchModal.querySelector('.result-wrapper')
+const menuLoad = document.querySelector('.menu-load')
 
 // const apiKey = '42307d83029282167962d48513375d5e'
 // const baseUrl = 'https://api.themoviedb.org/3/'
 
 //!---------------------> Functions <---------------------
+
 
 const toggleMenu = () => {
   sidebar.classList.toggle("active");
@@ -64,6 +66,7 @@ const account = () => {
 };
 
 fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e`).then(response => response.json()).then(data => {
+  menuLoad.style.display = 'none'
   data.genres.forEach(genre => {
       menu.innerHTML += `<li onclick="toMovies(${genre.id})">${genre.name}</li>`
   })
