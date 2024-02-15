@@ -8,9 +8,6 @@ const sidebar = document.querySelector("aside");
 const searchIcon = document.querySelector(".search-icon");
 const closeIcon = document.querySelector(".close-icon");
 const searchBox = document.querySelector(".search-box");
-const activeTheme = document.querySelector(".active-theme");
-const themeOptions = document.querySelector(".theme-options");
-const options = themeOptions.querySelectorAll("span");
 const accountBtn = document.querySelector(".account");
 const banner = document.querySelector(".banner");
 const list = document.querySelectorAll(".list");
@@ -31,13 +28,7 @@ const toggleSearchBox = () => {
   }
 };
 
-const toggleTheme = () => {
-  themeOptions.classList.toggle("active");
-};
 
-const selectTheme = (e) => {
-  activeTheme.querySelector("span").innerHTML = e.target.innerHTML;
-};
 
 const toAccount = () => {
   if (localStorage.getItem("user") == null) {
@@ -71,9 +62,5 @@ menuIcon.addEventListener("click", toggleMenu);
 overlay.addEventListener("click", toggleMenu);
 searchIcon.addEventListener("click", toggleSearchBox);
 closeIcon.addEventListener("click", toggleSearchBox);
-activeTheme.addEventListener("click", toggleTheme);
-options.forEach((option) => {
-  option.addEventListener("click", selectTheme);
-});
 accountBtn.addEventListener("click", toAccount);
 window.addEventListener("DOMContentLoaded", account);

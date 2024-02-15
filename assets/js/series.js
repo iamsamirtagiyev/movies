@@ -11,42 +11,38 @@ const loader = document.querySelector('.loader')
 
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
+const url = 'http://localhost:3000/'
 let page = 1
+let fav = []
 
 //!---------------------> Fetch <---------------------
 
-fetch(`${baseUrl}/genre/movie/list?api_key=${apiKey}`).then(response => response.json()).then(data => {
+fetch(`${baseUrl}/genre/tv/list?api_key=${apiKey}`).then(response => response.json()).then(data => {
     data.genres.forEach(genre => {
-        genreSlider.innerHTML += `<span onclick="getMovies(${genre.id})">${genre.name}</span>`
+        genreSlider.innerHTML += `<span onclick="withGenre(${genre.id}, ${page})">${genre.name}</span>`
     })
 })
 //!---------------------> Functions <---------------------
 
 const toDetails = (id) => {
-    window.location = `./detail.html?id=${id}`
+
+    if (localStorage.getItem('user') != null) {
+        
+    }
+    window.location = `./details.html?id=${id}`
+
 }
 
-const getMovies = (id) => {
-    movieList.innerHTML = ''
-    loadBtn.style.display = 'none'
-}
-
-const showMovies = (page) => {
-    fetch(`${baseUrl}discover/tv?api_key=${apiKey}&page=${page}`).then(response => response.json()).then(data => {
-        data.results.forEach(res => {
-            let imdbScore = `${res.vote_average}`
-            movieList.innerHTML  += `
-            <div class="movie-item" onclick="toDetails(${res.id})">
-            <div class="image" title=${res.title}>
-                <img src="https://image.tmdb.org/t/p/w1280${res.poster_path}" alt=${res.title}>
-                <div class="favorite" title="favorite">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                      </svg>
-                </div>
+const getMovies = (id, title, poster_path, vote_average, first_air_date) => {
+    let imdbScore = `${vote_average}`
+    movieList.innerHTML += `
+            <div class="movie-item" id="${id}" onclick="toDetails(${id})">
+            <div class="image" title=${title}>
+                <img src="https://image.tmdb.org/t/p/w1280${poster_path}" alt=${title}>
+                
             </div>
             <div class="desc">
-                <span>${res.name}</span>
+                <span>${title}</span>
                 <div>
                     <div class="imdb">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
@@ -54,17 +50,40 @@ const showMovies = (page) => {
                         </svg>
                         <span>${imdbScore.slice(0, 3)}</span>
                     </div>
-                    <div class="year">${res.first_air_date.split('-')[0]}</div>
+                    <div class="year">${first_air_date.split('-')[0]}</div>
                 </div>
             </div>
         </div>
             `
+}
+
+
+const showMovies = (page) => {
+    fetch(`${baseUrl}discover/tv?api_key=${apiKey}&page=${page}`).then(response => response.json()).then(data => {
+        data.results.forEach(res => {
+            // console.log(res)
+            getMovies(res.id, res.name, res.poster_path, res.vote_average, res.first_air_date)
             loader.style.display = 'none'
         })
     })
 }
 
+
+
 showMovies(page)
+
+const withGenre = (id, page) => {
+    loadBtn.style.display = 'none'
+    movieList.innerHTML = ''
+    axios.get(`${baseUrl}/discover/tv?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=&${page}&sort_by=popularity.desc&with_genres=${id}`).then(response => {
+        response.data.results.forEach(data => {
+            getMovies(data.id, data.name, data.poster_path, data.vote_average, data.first_air_date)
+            loader.style.display = 'none'
+
+        })
+    })
+}
+
 //!---------------------> Events <---------------------
 
 

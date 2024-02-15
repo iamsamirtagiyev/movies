@@ -1400,6 +1400,166 @@ nav .actions .menu-icon span:last-child {
   right: 5px;
 }
 
+.search-modal {
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #0f1115;
+  overflow: auto;
+  display: none;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-top: 30px;
+}
+.search-modal .search-wrapper {
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  background: #0f1115;
+}
+.search-modal .search-wrapper .top h1 {
+  color: darkred;
+  font-size: 18px;
+}
+.search-modal .search-wrapper .top span {
+  font-size: 30px;
+  color: #fff;
+  font-weight: 600;
+}
+.search-modal .search-wrapper .result-wrapper {
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 50px 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  position: relative;
+  cursor: pointer;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  background: #444444, url(../../images/video-bg-icon.png) no-repeat center/contain;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .favorite,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket {
+  position: absolute;
+  background: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add:hover svg path,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .favorite:hover svg path,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket:hover svg path {
+  fill: red;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add.active svg path,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .favorite.active svg path,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket.active svg path {
+  fill: red;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add svg,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .favorite svg,
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket svg {
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add {
+  z-index: 1;
+  bottom: 10px;
+  right: 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .add.active {
+  transform: rotate(135deg);
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .favorite {
+  right: 10px;
+  bottom: 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket {
+  right: 10px;
+  bottom: 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image .basket.active {
+  right: 60px;
+  bottom: 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .image img {
+  width: 100%;
+  height: 280px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 10px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 5px;
+  flex-direction: column;
+  padding: 5px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc span {
+  display: inline-block;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc div .imdb {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc div .imdb span {
+  color: #fff;
+  width: auto;
+  font-size: 16px;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc div .imdb svg path {
+  fill: #fab700;
+}
+.search-modal .search-wrapper .result-wrapper .movie-item .desc div .year {
+  background: rgba(255, 255, 255, 0.3);
+  width: 90px;
+  color: #fff;
+  padding: 2px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
 .overlay {
   z-index: 9;
   position: fixed;

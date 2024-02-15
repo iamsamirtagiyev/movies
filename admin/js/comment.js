@@ -10,10 +10,13 @@ fetch(`${url}comments`).then(response => response.json()).then(data => {
                 <td>@${item.user_name}</td>
                 <td><p>${item.comment}</p></td>
                 <td>
-                  <button class="detail-btn" title="detail"><i class="bi bi-info-circle"></i></button>
-                  <button class="delete-btn" title="delete"><i class="bi bi-trash3"></i></button>
+                  <button class="delete-btn" title="delete" onclick="delCom(${item.id})"><i class="bi bi-trash3"></i></button>
                 </td>
               </tr>
         `
     });
 })
+
+const delCom = (id) => {
+  axios.delete(`${url}comments/${id}`).then(() => window.location.reload())
+}

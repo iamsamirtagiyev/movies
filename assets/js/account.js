@@ -3,10 +3,7 @@
 const profileImg = document.querySelector('.image img')
 const fullname = document.querySelector('.fullname')
 const usernameSpan = document.querySelector('.username-span')
-const favoritesBtn = document.querySelector('.favorites')
-const historyBtn = document.querySelector('.history')
 const historyContainer = document.querySelector('.history-container')
-const favoritesContainer = document.querySelector('.favorites-container')
 const watchList = document.querySelector('.watchlist')
 const buttons = document.querySelector('.buttons')
 const logoutBtn = document.querySelector('.logout-btn')
@@ -24,16 +21,66 @@ const saveBtn = modal.querySelector('button')
 let url = 'http://localhost:3000/'
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
+let fav = []
 
 //!---------------->Axios<----------------
 
-
+axios.get(`${url}history`).then(response => {
+    response.data.forEach(element => {
+        axios.get(`${baseUrl}/movie/${element.movie_id}?api_key=${apiKey}&language=en-US`).then(res => {
+            getMovies(historyContainer, res.data.id, res.data.poster_path, res.data.title)
+        })
+    });
+})
 
 //!---------------->Functions<----------------
+
+const getMovies = (list, id, poster, name) => {
+    list.innerHTML += `
+    <div class="movie-item" onclick="toDetails(${id})">
+                <div class="cover">
+                  <img src="https://image.tmdb.org/t/p/w1280${poster}" alt="cover" />
+                </div>
+                <div class="movie-detail">
+                  <div class="desc">
+                    <span class="movie-name">${name}</span>
+                  </div>
+                  <button class="remove" onclick="removeFromData(${id})">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-x"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                    </svg><span>Remove Favorites</span>
+                  </button>
+                </div>
+              </div>
+    `
+}
+
+const removeFromData = (id) => {
+    axios.get(`${url}history`).then(response => {
+        let delId = response.data.find(s => s.movie_id = id).id
+        axios.delete(`${url}history/${delId}`).then(() => window.location.reload())
+    })
+}
+
+const toDetails = (id) => {
+    if(!event.target.classList.contains('remove')){
+        window.location = `./details.html?id=${id}`
+    }
+}
 
 if(localStorage.getItem('user') == null){
     window.location = './signup.html'
 }
+else{
+    
+}
+
+
+
+
+
 
 profileImg.src = JSON.parse(localStorage.getItem('user')).image
 fullname.innerHTML = JSON.parse(localStorage.getItem('user')).fullname
@@ -53,17 +100,7 @@ const showToast = (type, message) => {
     }, 3000);
 };
 
-const toHistory = () => {
-    buttons.classList.add('right')
-    buttons.classList.remove('left')
-    watchList.scrollLeft += 2000
-}
 
-const toFavorites = () => {
-    watchList.scrollLeft -= 2000
-    buttons.classList.remove('right')
-    buttons.classList.add('left')
-}
 
 const logout = () => {
     localStorage.removeItem('user')
@@ -118,9 +155,6 @@ const edit = (e) => {
 }
 
 //!---------------->Events<----------------
-
-historyBtn.addEventListener('click', toHistory)
-favoritesBtn.addEventListener('click', toFavorites)
 logoutBtn.addEventListener('click', logout)
 editBtn.addEventListener('click', openModal)
 modalWrapper.addEventListener('click', closeModal)

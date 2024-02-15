@@ -243,6 +243,165 @@ nav {
 }
 
 //? ---------------> Navbar End <---------------
+.search-modal {
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: $primary-color;
+  overflow: auto;
+  display: none;
+  justify-content: flex-end;
+  padding: 20px;
+  padding-top: 30px;
+
+  .search-wrapper {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    @include flex;
+    flex-direction: column;
+    background: $primary-color;
+    .top{
+      h1{
+        color: darkred;
+        font-size: 18px;
+      }
+      span{
+        font-size: 30px;
+        color: $white;
+        font-weight: 600;
+      }
+    }
+    .result-wrapper{
+      padding-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 50px 10px;
+
+      .movie-item {
+        user-select: none;
+        position: relative;
+        cursor: pointer;
+
+        .image {
+          position: relative;
+          width: 100%;
+          height: 280px;
+          border-radius: 10px;
+          background: #444444, url(../../images/video-bg-icon.png) no-repeat center/contain;
+
+          .add,
+          .favorite,
+          .basket {
+            position: absolute;
+            background: $white;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            @include flex(center, center);
+            transition: all 0.5s ease;
+            transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+            &:hover svg path{
+              fill: red;
+            }
+            &.active svg path{
+              fill: red;
+            }
+            svg{
+              pointer-events: none;
+              transition: all 0.5s ease;
+            }
+          }
+
+          .add {
+            z-index: 1;
+            bottom: 10px;
+            right: 10px;
+
+            &.active {
+              transform: rotate(135deg);
+            }
+          }
+
+          .favorite {
+            right: 10px;
+            bottom: 10px;
+          }
+
+          .basket {
+            right: 10px;
+            bottom: 10px;
+
+            &.active {
+              right: 60px;
+              bottom: 10px;
+            }
+          }
+
+          img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 10px;
+          }
+        }
+
+        .desc {
+          @include flex;
+          gap: 5px;
+          flex-direction: column;
+          padding: 5px;
+
+          span {
+            display: inline-block;
+            color: $white;
+            font-size: 22px;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+          }
+
+          div {
+            @include flex(center, space-between);
+            width: 100%;
+
+            .imdb {
+              @include flex(center);
+              gap: 5px;
+
+              span {
+                color: $white;
+                width: auto;
+                font-size: 16px;
+              }
+
+              svg {
+                path {
+                  fill: $yellow;
+                }
+              }
+            }
+
+            .year {
+              background: $icon-bg;
+              width: 90px;
+              color: $white;
+              padding: 2px 10px;
+              @include flex(center, center);
+              font-weight: 500;
+              border-radius: 5px;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 
 //? ---------------> Sidebar Start <---------------
 
@@ -758,26 +917,32 @@ aside {
                 background: $white;
                 scale: 0;
                 transition: all 0.5s ease;
-                &:hover{
+
+                &:hover {
                   background: red;
                 }
-                &:hover svg path{
+
+                &:hover svg path {
                   fill: $white;
                 }
 
                 svg {
                   pointer-events: none;
+
                   path {
                     transition: all 0.5s ease;
                     fill: $black;
                   }
                 }
-                &.fav{
-                  &:hover{
+
+                &.fav {
+                  &:hover {
                     background: $white;
                   }
+
                   svg {
                     pointer-events: none;
+
                     path {
                       transition: all 0.5s ease;
                       fill: red;
