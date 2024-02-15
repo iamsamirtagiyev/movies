@@ -1,6 +1,6 @@
 const tbody = document.querySelector('tbody')
 
-axios.get(`https://movies-gnnl.onrender.com/users`).then(response => {
+axios.get(`http://localhost:3000/users`).then(response => {
     response.data.forEach(user => {
         tbody.innerHTML += `
         <tr>
@@ -18,7 +18,7 @@ axios.get(`https://movies-gnnl.onrender.com/users`).then(response => {
 
 const deleteUser = (id) => {
     if (confirm('Do you want to delete this user?')) {
-        axios.delete(`http://localhost:3000/user/${id}`).then(() => {
+        axios.delete(`http://localhost:3000/users/${id}`).then(() => {
             localStorage.removeItem('user')
             window.location.reload()
         })

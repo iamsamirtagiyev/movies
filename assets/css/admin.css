@@ -537,7 +537,7 @@ aside .menu li button i {
 .dashboard-wrapper .dashboard {
   width: calc(100% - 250px);
   min-height: calc(100vh - 66px);
-  background: rgb(255, 255, 255);
+  background: #0f1115;
   padding: 20px;
 }
 .dashboard-wrapper .dashboard .graphics {
@@ -549,11 +549,23 @@ aside .menu li button i {
 .dashboard-wrapper .dashboard .graphics .movies-graphics {
   width: 50%;
   padding: 20px;
-  background: #e3e3e3;
+  background: #252525;
   border-radius: 10px;
 }
 .dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box {
   padding: 20px;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box h2 {
+  color: #fff;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box:first-child .progress .progress-bar::after {
+  width: 60%;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box:nth-child(2) .progress .progress-bar::after {
+  width: 35%;
+}
+.dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box:last-child .progress .progress-bar::after {
+  width: 84%;
 }
 .dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress {
   display: flex;
@@ -563,12 +575,13 @@ aside .menu li button i {
 }
 .dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress span {
   font-size: 18px;
+  color: #fff;
 }
 .dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress .progress-bar {
   position: relative;
   width: 100%;
   height: 10px;
-  background: rgb(185, 185, 185);
+  background: #444444;
   border-radius: 50px;
 }
 .dashboard-wrapper .dashboard .graphics .movies-graphics .genre-box .progress .progress-bar::after {
@@ -580,7 +593,7 @@ aside .menu li button i {
   border-radius: 50px;
 }
 .dashboard-wrapper .dashboard .graphics .circle-wrapper {
-  background: #e3e3e3;
+  background: #252525;
   border-radius: 10px;
   width: 50%;
   padding: 20px;
@@ -590,21 +603,21 @@ aside .menu li button i {
   width: 305px;
   height: 305px;
   border-radius: 999px;
-  background-image: conic-gradient(blue 0%, blue 70%, rgb(185, 185, 185) 70%, rgb(185, 185, 185) 100%);
+  background-image: conic-gradient(green 0%, green 70%, #444444 70%, #444444 100%);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .dashboard-wrapper .dashboard .graphics .circle-wrapper .circle span {
   font-size: 80px;
-  background: #e3e3e3;
+  background: #252525;
   width: 250px;
   height: 250px;
   border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: blue;
+  color: green;
   font-weight: 600;
 }
 
