@@ -315,11 +315,15 @@ nav {
   top: 0;
   left: 0;
   background: $primary-color;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: none;
   justify-content: flex-end;
   padding: 20px;
   padding-top: 30px;
+  &::-webkit-scrollbar{
+    width:1px;
+  }
 
   .search-wrapper {
     width: calc(100% - 250px);
