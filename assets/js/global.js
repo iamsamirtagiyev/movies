@@ -33,6 +33,7 @@ const toggleSearchBox = () => {
     searchBox.classList.remove("active");
   } else {
     searchBox.classList.add("active");
+    searchInput.focus()
   }
 };
 

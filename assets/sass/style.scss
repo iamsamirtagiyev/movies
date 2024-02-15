@@ -1029,6 +1029,10 @@ aside {
         padding: 0 10px;
         display: none;
 
+        &:after{
+          right: 62px;
+        }
+
         &.active {
           display: flex;
 

@@ -289,16 +289,16 @@ ul {
   height: 20px;
   border-radius: 999px;
   transition: all 0.5s ease;
-  animation: load 1s linear infinite;
+  animation: loadr 1s linear infinite;
   display: none;
 }
 
-@keyframes load {
+@keyframes loadr {
   from {
-    transform: rotate(0deg);
+    transform: translateY(0) rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: translateY(0) rotate(360deg);
   }
 }
 @media (max-width: 992px) {
@@ -2125,6 +2125,9 @@ aside footer button:hover {
     height: 100%;
     padding: 0 10px;
     display: none;
+  }
+  nav .actions .search-box:after {
+    right: 62px;
   }
   nav .actions .search-box.active {
     display: flex;
