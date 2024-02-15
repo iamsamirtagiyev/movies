@@ -66,16 +66,14 @@ const removeFromData = (id) => {
 
 const toDetails = (id) => {
     if(!event.target.classList.contains('remove')){
-        window.location = `./details.html?id=${id}`
+        window.location = `./detail.html?id=${id}`
     }
 }
 
 if(localStorage.getItem('user') == null){
     window.location = './signup.html'
 }
-else{
-    
-}
+
 
 
 

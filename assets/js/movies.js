@@ -2,9 +2,8 @@
 
 const nextBtn = document.querySelector('.right')
 const prevBtn = document.querySelector('.left')
-const genreSlider = document.querySelector('.genre-slider')
 const movieList = document.querySelector('.movie-list')
-const loadBtnAll = document.querySelector('.all')
+const loadBtn = document.querySelector('.load-more button')
 const loader = document.querySelector('.loader')
 
 //!---------------------> Variables <---------------------
@@ -13,16 +12,7 @@ const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/'
 const url = 'http://localhost:3000/'
 let page = 1
-let fav = []
-
-//!---------------------> Fetch <---------------------
-
-fetch(`${baseUrl}/genre/movie/list?api_key=${apiKey}`).then(response => response.json()).then(data => {
-    data.genres.forEach(genre => {
-        genreSlider.innerHTML += `<span onclick="withGenre(${genre.id}, ${page})">${genre.name}</span>`
-    })
-})
-
+let id = new URLSearchParams(window.location.search).get('id')
 
 
 //!---------------------> Functions <---------------------
@@ -64,7 +54,7 @@ const getMovies = (id, title, poster_path, vote_average, release_date) => {
 }
 
 const showMovies = (page) => {
-    fetch(`${baseUrl}discover/movie?api_key=${apiKey}&page=${page}`).then(response => response.json()).then(data => {
+    fetch(`${baseUrl}/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc&with_genres=${id}`).then(response => response.json()).then(data => {
         data.results.forEach(res => {
             getMovies(res.id, res.title, res.poster_path, res.vote_average, res.release_date)
             loader.style.display = 'none'
@@ -76,30 +66,14 @@ const showMovies = (page) => {
 
 showMovies(page)
 
-const withGenre = (id, page) => {
-    loadBtnAll.style.display = 'none'
-    movieList.innerHTML = ''
-    axios.get(`${baseUrl}/discover/movie?api_key=${apiKey}&include_adult=false&include_video=false&language=en-US&page=&${page}&sort_by=popularity.desc&with_genres=${id}`).then(response => {
-        response.data.results.forEach(data => {
-            getMovies(data.id, data.title, data.poster_path, data.vote_average, data.release_date)
-            loader.style.display = 'none'
 
-        })
-    })
-}
 
 //!---------------------> Events <---------------------
 
 
-nextBtn.addEventListener('click', () => {
-    genreSlider.scrollLeft += 500
-})
-prevBtn.addEventListener('click', () => {
-    genreSlider.scrollLeft -= 500
-})
 
-loadBtnAll.addEventListener('click', () => {
+loadBtn.addEventListener('click', () => {
     loader.style.display = 'block'
-    page++
-    showMovies(page)
+    page++;
+    showMovies(page);
 })

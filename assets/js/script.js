@@ -8,20 +8,19 @@ const carousel = document.querySelectorAll('.carousel')
 const uncomingMovies = document.querySelector('.uncoming')
 const trendingMovies = document.querySelector('.trending')
 const topRatedMovies = document.querySelector('.top-rated')
-const searchModal = document.querySelector('.search-modal')
-const searchInput = document.querySelector('.search input')
-const searchTitle = searchModal.querySelector('.search-title')
+
 
 //!---------------------> Variables <---------------------
 
 const apiKey = '42307d83029282167962d48513375d5e'
 const baseUrl = 'https://api.themoviedb.org/3/movie/'
-let url = 'http://localhost:3000/users/'
+let url = 'http://localhost:3000/'
 const fav = []
 
 //!---------------------> Functions <---------------------
 
 const showMovies = (list, image, title, date, imdb, id) => {
+    let imdbs = `${imdb}`
     list.querySelector('.movie-list').innerHTML += `
         
         <div class="movie"  title="${title}" onclick="toDetails(${id})">
@@ -33,7 +32,7 @@ const showMovies = (list, image, title, date, imdb, id) => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                         </svg>
-                        <span>${imdb}</span>
+                        <span>${imdbs.slice(0, 3)}</span>
                     </div>
                     <div class="year">${date.split('-')[0]}</div>
                 </div>
@@ -57,19 +56,18 @@ const showMovies = (list, image, title, date, imdb, id) => {
 }
 
 const toDetails = (id) => {
-    window.location = `./detail.html?id=${id}`
-}
-
-const searchMovie = () => {
-    if(searchInput.value.trim()){
-        searchModal.style.display = 'flex'
-        searchTitle.innerHTML = searchInput.value.trim()
-        
+    if(localStorage.getItem('user') != null){
+        axios.post(`${url}history`, {
+            user_id: JSON.parse(localStorage.getItem('user')).id,
+            movie_id: id
+        }).then(()=> window.location = `./detail.html?id=${id}`)
     }
     else{
-        searchModal.style.display = 'none'
+        window.location = `./detail.html?id=${id}`
     }
 }
+
+
 
 //!---------------------> Fetch <---------------------
 
@@ -114,4 +112,3 @@ prevBtns.forEach((prevBtn, index) => {
     })
 })
 
-searchInput.addEventListener('input', searchMovie)
