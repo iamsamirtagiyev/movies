@@ -6,7 +6,7 @@ $(document).ready(() => {
   const bannerWrapper = document.querySelector('.banner-wrapper')
   const description = document.querySelector('.description')
 
-  $.get(`https://api.themoviedb.org/3/movie/popular?api_key=42307d83029282167962d48513375d5e&language=en-US`, (data) => {
+  $.get(`https://api.themoviedb.org/3/movie/popular?api_key=4b8f4e8e3501bad806af6cda70c0071a&language=en-US`, (data) => {
     $.each(data.results, (index, value) => {
       carouselItems[index].querySelector('img').src = `https://image.tmdb.org/t/p/w1280${value.poster_path}`
     })
