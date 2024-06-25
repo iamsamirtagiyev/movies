@@ -8,7 +8,7 @@ const comments = document.querySelector('.comments')
 //!---------------------> Variables <---------------------
 
 let id = new URLSearchParams(window.location.search).get('id')
-const apiKey = '42307d83029282167962d48513375d5e'
+const apiKey = '4b8f4e8e3501bad806af6cda70c0071a'
 const baseUrl = 'https://api.themoviedb.org/3/'
 let url = 'http://localhost:3000/'
 const genre = []
