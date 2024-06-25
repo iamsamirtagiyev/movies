@@ -12,7 +12,7 @@ const topRatedMovies = document.querySelector('.top-rated')
 
 //!---------------------> Variables <---------------------
 
-const apiKey = '42307d83029282167962d48513375d5e'
+const apiKey = '4b8f4e8e3501bad806af6cda70c0071a'
 const baseUrl = 'https://api.themoviedb.org/3/movie/'
 let url = 'http://localhost:3000/'
 const fav = []
