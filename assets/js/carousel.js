@@ -17,7 +17,7 @@ $(document).ready(() => {
       rgba(0, 0, 0, 0.4)
     ),url(https://image.tmdb.org/t/p/w1280${data.results[0].backdrop_path}) no-repeat center/cover`
 
-    $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e&language=en-US`, (genre => {
+    $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=4b8f4e8e3501bad806af6cda70c0071a&language=en-US`, (genre => {
 
       gnr1 = genre.genres.find(gen => {
         if (gen.id == data.results[0].genre_ids[0]) {
@@ -53,7 +53,7 @@ $(document).ready(() => {
 
     $.each(carouselItems, (index, item) => {
       item.onclick = () => {
-        $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=42307d83029282167962d48513375d5e&language=en-US`, (genre => {
+        $.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=4b8f4e8e3501bad806af6cda70c0071a&language=en-US`, (genre => {
 
           gnr1 = genre.genres.find(gen => {
             if (gen.id == data.results[index].genre_ids[0]) {
